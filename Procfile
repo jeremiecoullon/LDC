@@ -1,1 +1,1 @@
-web: gunicorn LDC.wsgi
+web: gunicorn config.wsgi
