@@ -1,0 +1,93 @@
+from rest_framework import serializers
+from .models import Band, Player, Instrument, Venue, Festival, Album
+
+base_fields = ('name', 'url', 'id', 'description', 'country', 'external_URL', 'image')
+
+
+class BandSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Band
+		fields = base_fields + ('members', 'isactive', 'festival', 'venue', 'album')
+
+
+class InstrumentSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Instrument
+		fields = ('name',)
+
+class PlayerSerializer(serializers.ModelSerializer):
+	instrument = InstrumentSerializer(many=True)
+
+	class Meta:
+		model = Player
+		fields = base_fields + ('instrument', 'band', 'isactive', 'festival', 'venue', 'album',)
+
+
+
+class FestivalSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Festival
+		fields =  base_fields + ('isactive', 'bandsplayed', 'playersplayed')
+
+
+class VenueSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Venue
+		fields = base_fields + ('isactive', 'bandsplayed', 'playersplayed')
+
+
+class AlbumSerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Album
+		fields = base_fields + ('date', 'band', 'playersplayed')
+
+
+
+class LinkPlayerSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Player
+		fields = ('id', 'url', 'band', 'festival', 'venue', 'album')
+
+class LinkBandSerializer(serializers.ModelSerializer):
+	class Meta:
+		model = Band
+		fields = ('id', 'url', 'festival', 'venue', 'album')
+
+
+
+# Unique country serialisation
+
+class BandCountrySerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Band
+		fields = ('country',)
+
+class PlayerCountrySerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Player
+		fields = ('country',)
+
+class FestivalCountrySerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Festival
+		fields = ('country',)
+
+class VenueCountrySerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Venue
+		fields = ('country',)
+
+class AlbumCountrySerializer(serializers.ModelSerializer):
+
+	class Meta:
+		model = Album
+		fields = ('country',)
