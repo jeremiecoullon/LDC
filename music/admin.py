@@ -4,4 +4,5 @@ from .models import Player, Tune, Volume
 
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
-	pass
+	search_fields = ['name']
+	list_display = ['name']

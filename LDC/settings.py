@@ -30,6 +30,7 @@ DEBUG = True
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
     'music.apps.MusicConfig',
     'django.contrib.admin',
     'django.contrib.auth',
