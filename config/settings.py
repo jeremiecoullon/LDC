@@ -64,6 +64,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'config.urls'
 
+CORS_ORIGIN_WHITELIST = (
+    'https://djangoversereact.s3.eu-west-2.amazonaws.com',
+)
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
