@@ -52,6 +52,7 @@ REST_FRAMEWORK = {
 }
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -66,6 +67,7 @@ ROOT_URLCONF = 'config.urls'
 
 CORS_ORIGIN_WHITELIST = (
     'https://djangoversereact.s3.eu-west-2.amazonaws.com',
+    'http://localhost:3000',
 )
 
 TEMPLATES = [
