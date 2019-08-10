@@ -6,3 +6,15 @@ from .models import Player, Tune, Volume
 class PlayerAdmin(admin.ModelAdmin):
 	search_fields = ['name']
 	list_display = ['name']
+
+
+@admin.register(Volume)
+class VolumeAdmin(admin.ModelAdmin):
+	search_fields = ['name']
+	list_display = ['name']
+	exclude = ['slug']
+
+@admin.register(Tune)
+class TuneAdmin(admin.ModelAdmin):
+	search_fields = ['name']
+	list_display = ['name']

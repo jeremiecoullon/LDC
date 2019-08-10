@@ -29,8 +29,9 @@ class Player(models.Model):
 
 class Volume(models.Model):
 	name = models.CharField(max_length=200)
-	slug = models.SlugField(unique=True, max_length=200)
+	slug = models.SlugField(unique=True, blank=True, max_length=200)
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
+		super(Volume, self).save(*args, **kwargs)
 

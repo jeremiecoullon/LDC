@@ -1,15 +1,28 @@
-
 {% extends 'music/base.html' %}
+{% load static from staticfiles %}
+
 
 {% block header %}
-<head>
-	<title></title>
-</head>
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,300italic,400,400italic" rel="stylesheet">
+
+    <link href="{% static 'music/css/LDC_base.css' %}" rel="stylesheet">
+
+
+    <title>London Django Collective - {{ volume.name }}</title>
+  </head>
 {% endblock %}
 
 {% block content %}
 <body>
-<h1>Volume 1</h1>
+<h1>{{ volume.name }}</h1>
+<p>this is a volume</p>
 </body>
 
 {% endblock %}

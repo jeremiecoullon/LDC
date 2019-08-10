@@ -4,8 +4,8 @@
 {% block header %}{% endblock %}
 
 <nav class="navbar sticky-top navbar-light bg-light">
-  <a class="navbar-brand" href="#">London Django Collective</a>
-  <a class="navbar-brand" href="#">DjangoVerse</a>
+  <a class="navbar-brand" href="{% url 'music:index' %}">London Django Collective</a>
+  <a class="navbar-brand" href="{% url 'music:djangoverse-page' %}">DjangoVerse</a>
   <a class="navbar-brand" href="#">Social Media</a>
 </nav>
 
@@ -13,7 +13,7 @@
 
 <footer>
 	<hr>
-	A footer
+	A footer: facebook, instagram, etc..
 </footer>
 </html>
 
