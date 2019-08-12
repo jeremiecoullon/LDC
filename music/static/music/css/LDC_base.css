@@ -16,3 +16,7 @@ h1, h2, h3 {
     font-weight: 300;
     letter-spacing: 1px;
 }
+
+.add-padding-top{
+    padding-top: 100px;
+}

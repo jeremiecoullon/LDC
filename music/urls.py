@@ -6,6 +6,7 @@ app_name = 'music'
 
 urlpatterns = [
     path("", views.index, name='index'),
-    path("volume/<str:slug>", views.volume, name='volume'),
+    path("volumes/<str:slug>", views.volume, name='volume'),
     path('djangoverse', views.DV, name='djangoverse-page'),
+    path('djangoverse_fullscreen', views.DV_fullscreen, name='djangoverse-fullscreen'),
 ]

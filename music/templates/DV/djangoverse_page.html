@@ -12,6 +12,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,300italic,400,400italic" rel="stylesheet">
 
     <link href="{% static 'music/css/LDC_base.css' %}" rel="stylesheet">
+    <link href="{% static 'music/css/DjangoVerse.css' %}" rel="stylesheet">
 
 
     <title>London Django Collective - DjangoVerse</title>
@@ -23,23 +24,29 @@
 <body>
 
 	<h1>Django Verse</h1>
-	<iframe src="https://djangoversereact.s3.eu-west-2.amazonaws.com/index.html" width=90% height="700px;" style="margin-left:5%; margin-top:30px;"></iframe>
 
-	<p>View <a href="https://djangoversereact.s3.eu-west-2.amazonaws.com/index.html" target="_blank">fullscreen</a></p>
+<div class='container'>
+	<iframe src="https://djangoversereact.s3.eu-west-2.amazonaws.com/index.html" width=100% height="700px;" class="embedded-iframe"></iframe>
+	<p>View <a href="{% url 'music:djangoverse-fullscreen' %}" >fullscreen</a></p>
+	
 	<h2>About</h2>
-	The DjangoVerse is essential Wikipedia for Gypsy Jazz. You can find players, bands, and their albums, as well as venues and festivals in this interactive graph. You can also data to this yourself! 
+	<p>
+		The DjangoVerse is essentially Wikipedia for Gypsy Jazz. You can find players, bands, and festivals in this interactive 3D graph. You can also data to this yourself! 
+	</p>
+	
 
-	<h4>Tips about adding information</h4>
+	<h3>Tips about adding information</h3>
 
 	<li>Add yourself or your faverite players to the graph!</li>
 	<li>other</li>
 
 	<h2>Contribute</h2>
 
-	Send any feedback, bugs, or other to jeremie.coullon@gmail.com. If you're a nerd you can open an issue or make a pull request on <a href="https://github.com/jeremiecoullon/">Github</a>
+	Send any feedback, bugs, or other to jeremie.coullon@gmail.com. If you're a nerd you can open an issue or make a pull request on <a href="https://github.com/jeremiecoullon/DjangoVerse-react">Github</a>
 
 	<hr>
 
+</div>
 
 </body>
 {% endblock %}

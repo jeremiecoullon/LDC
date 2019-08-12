@@ -13,6 +13,7 @@
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,300italic,400,400italic" rel="stylesheet">
 
     <link href="{% static 'music/css/LDC_base.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'music/css/volume_page.css' %}" rel="stylesheet"> -->
 
 
     <title>London Django Collective - {{ volume.name }}</title>
@@ -21,8 +22,31 @@
 
 {% block content %}
 <body>
-<h1>{{ volume.name }}</h1>
-<p>this is a volume</p>
+
+  <div class="text-center">
+    <h1>{{ volume.name }}</h1>
+    <i>{{ volume.composer }}</i>
+  </div>
+
+
+<div class='container add-padding-top'>
+
+  <h3>{{ volume.video_tune.name }}</h3>
+
+<iframe width="700" height="450" src="{{ volume.video_tune.video_embed }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+<div>
+  {{ volume.video_tune.band | safe }}
+</div>
+
+<div>
+  <h3>{{ volume.audio_tune.name }}</h3>
+
+</div>
+
+</div>
+
+
 </body>
 
 {% endblock %}

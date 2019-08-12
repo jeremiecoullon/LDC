@@ -14,3 +14,7 @@ def volume(request, slug):
 
 def DV(request):
 	return render(request, 'DV/djangoverse_page.html')
+
+
+def DV_fullscreen(request):
+	return render(request, 'DV/DV_fullscreen.html')

@@ -38,12 +38,45 @@
 		<div class='row'>
 			<div class="col-md-8 offset-md-2">
 			<h1>Music</h1>
-			<p>lalalfjlksd afjkldsjaklf jdsaklfjkldsa jfkldsajf kdja dsds</p>
+			<p>Each volume consists of tunes written by a single composer</p>
 			{% for vol in volumes %}
-				<a href="{% url 'music:volume' vol.slug %}">{{ vol.name }} </a>
+				
 			{% endfor %}
 			</div>
 		</div>
+
+		<div class='row'>
+			{% for vol in volumes|slice:":3" %}
+			<div class='col-md-4'>
+
+				<a href="{% url 'music:volume' vol.slug %}" >
+					<div class='volume_box' style='border: solid 1px black; background-image: url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>{{ vol.name }}</div>
+				</a>
+
+
+			</div>
+			{% endfor %}
+		</div>
+		
+
+		<div class='row'>
+			<div class='col-md-4 offset-md-2'>
+				{% for vol in volumes|slice:"3:4" %}
+				<a href="{% url 'music:volume' vol.slug %}" >
+					<div class='volume_box' style='border: solid 1px black; background-image: url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>{{ vol.name }}</div>
+				</a>
+				{% endfor %}
+
+			</div>
+			<div class='col-md-4'>
+				{% for vol in volumes|slice:"4:5" %}
+				<a href="{% url 'music:volume' vol.slug %}" >
+					<div class='volume_box' style='border: solid 1px black; background-image: url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>{{ vol.name }}</div>
+				</a>
+				{% endfor %}
+			</div>
+		</div>
+
 	</section>
 
 
@@ -80,7 +113,7 @@
 						<h3 class="musician_name">{{ player.name }}</h3>
 					</div>
 					<div >
-						<img class="clip-circle img-responsive" src="{% if player.image %}{{ player.image.url }}{% endif %}" width='200' alt="author image">
+						<img class="clip-circle img-responsive" src="{% if player.image %}{{ player.image.url }}{% endif %}" width=200 alt="author image">
 					</div>
 					<div class="musician_description">
 						{{ player.bio | safe }}
@@ -97,7 +130,7 @@
 						<h3 class="musician_name">{{ player.name }}</h3>
 					</div>
 					<div >
-						<img class="clip-circle img-responsive" src="{% static 'band/img/Matt_new.png' %}"  alt = "author image">
+						<img class="clip-circle img-responsive" src="{% if player.image %}{{ player.image.url }}{% endif %}" width=200  alt = "author image">
 					</div>
 					<div class="musician_description">
 						{{ player.bio | safe }}
