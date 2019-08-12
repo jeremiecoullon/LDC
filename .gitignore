@@ -1,5 +1,5 @@
 venv
-www
+www/*
 *.pyc
 staticfiles
 .env
