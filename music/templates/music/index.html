@@ -39,40 +39,28 @@
 			<div class="col-md-8 offset-md-2">
 			<h1>Music</h1>
 			<p>Each volume consists of tunes written by a single composer</p>
-			{% for vol in volumes %}
-				
-			{% endfor %}
 			</div>
 		</div>
 
 		<div class='row'>
 			{% for vol in volumes|slice:":3" %}
 			<div class='col-md-4'>
-
-				<a href="{% url 'music:volume' vol.slug %}" >
-					<div class='volume_box' style='border: solid 1px black; background-image: url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>{{ vol.name }}</div>
-				</a>
-
-
+				{% include 'music/volume_box.html' %}
 			</div>
 			{% endfor %}
 		</div>
 		
 
-		<div class='row'>
+		<div class='row add-padding-top'>
 			<div class='col-md-4 offset-md-2'>
 				{% for vol in volumes|slice:"3:4" %}
-				<a href="{% url 'music:volume' vol.slug %}" >
-					<div class='volume_box' style='border: solid 1px black; background-image: url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>{{ vol.name }}</div>
-				</a>
+					{% include 'music/volume_box.html' %}
 				{% endfor %}
 
 			</div>
 			<div class='col-md-4'>
 				{% for vol in volumes|slice:"4:5" %}
-				<a href="{% url 'music:volume' vol.slug %}" >
-					<div class='volume_box' style='border: solid 1px black; background-image: url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>{{ vol.name }}</div>
-				</a>
+					{% include 'music/volume_box.html' %}
 				{% endfor %}
 			</div>
 		</div>

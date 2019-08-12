@@ -9,4 +9,9 @@
 }
 .volume_box{
 	height: 300px;
+	color: white;
+	background-size: cover;
+}
+.volume_box_info{
+	padding-top: 25px;
 }

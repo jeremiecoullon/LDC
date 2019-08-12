@@ -1,0 +1,10 @@
+<a href="{% url 'music:volume' vol.slug %}" >
+	<div 
+	class='volume_box' 
+	style='background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, 0)), url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>
+		<div class="volume_box_info">
+			<h3>{{ vol.name }}</h3>
+			<i>- {{ vol.composer }} -</i>
+		</div>
+	</div>
+</a>
