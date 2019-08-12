@@ -3,7 +3,7 @@ from .models import Player, Volume
 
 def index(request):
 	players = Player.objects.order_by('name')
-	volumes = Volume.objects.all()
+	volumes = Volume.objects.order_by('name')
 	return render(request, 'music/index.html', {'players': players, 'volumes': volumes})
 
 
