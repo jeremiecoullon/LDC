@@ -25,10 +25,12 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = os.environ['LDC_DJANGO_SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-if os.path.isfile("../local.txt"):
-    DEBUG = True
-else:
-    DEBUG = False
+# if os.path.isfile("../local.txt"):
+#     DEBUG = True
+# else:
+#     DEBUG = False
+
+DEBUG = True
 
 
 # Application definition
