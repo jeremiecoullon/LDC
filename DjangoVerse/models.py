@@ -7,19 +7,19 @@ COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
 
 
 def festival_img_path(instance, filename):
-	return f'festival_images/{instance.name}/{filename}'
+	return f'DjangoVerse/festival_images/{instance.name}/{filename}'
 
 def venue_img_path(instance, filename):
-	return f'venue_images/{instance.name}/{filename}'
+	return f'DjangoVerse/venue_images/{instance.name}/{filename}'
 
 def band_img_path(instance, filename):
-	return f'band_images/{instance.name}/{filename}'
+	return f'DjangoVerse/band_images/{instance.name}/{filename}'
 
 def player_img_path(instance, filename):
-	return f'player_images/{instance.name}/{filename}'
+	return f'DjangoVerse/player_images/{instance.name}/{filename}'
 
-def album_img_path(instance, filename):
-	return f'album_images/{instance.name}/{filename}'
+def album_img_path(instance, filename): 
+	return f'DjangoVerse/album_images/{instance.name}/{filename}'
 
 
 class BaseInfo(models.Model):
