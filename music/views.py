@@ -11,6 +11,8 @@ def volume(request, slug):
 	le_volume = get_object_or_404(Volume, slug=slug)
 	return render(request, 'music/volume_page.html', {'volume': le_volume})
 
+def contact_gigs(request):
+	return render(request, 'music/contact_gigs.html')
 
 def DV(request):
 	return render(request, 'DV/djangoverse_page.html')
@@ -18,3 +20,4 @@ def DV(request):
 
 def DV_fullscreen(request):
 	return render(request, 'DV/DV_fullscreen.html')
+

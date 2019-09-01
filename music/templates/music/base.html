@@ -3,10 +3,28 @@
 
 {% block header %}{% endblock %}
 
-<nav class="navbar sticky-top navbar-light bg-light">
+<!-- <nav class="navbar sticky-top navbar-light bg-light">
   <a class="navbar-brand" href="{% url 'music:index' %}">London Django Collective</a>
   <a class="navbar-brand" href="{% url 'music:djangoverse-page' %}">DjangoVerse</a>
   <a class="navbar-brand" href="#">Social Media</a>
+</nav> -->
+
+
+
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+    <a href="{% url 'music:index' %}" class="navbar-brand">London Django Collective</a>
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarCollapse">
+        <div class="navbar-nav">
+        	<a href="{% url 'music:contact-gigs' %}" class="nav-item nav-link active">Contact & Gigs</a>
+            <a href="{% url 'music:djangoverse-page' %}" class="nav-item nav-link active">DjangoVerse</a>
+            <a href="#" class="nav-item nav-link">Instagram</a>
+            <a href="#" class="nav-item nav-link">Facebook</a>
+        </div>
+    </div>
 </nav>
 
 
