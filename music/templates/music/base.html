@@ -11,28 +11,32 @@
 
 
 
-<nav class="navbar navbar-expand-md navbar-light bg-light">
-    <a href="{% url 'music:index' %}" class="navbar-brand">London Django Collective</a>
+<nav class="navbar navbar-expand-md navbar-light bg-LDC">
+    <a href="{% url 'music:index' %}" class="navbar-brand navbar-LDC">London Django Collective</a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>
 
+<!-- nav-item nav-link active -->
     <div class="collapse navbar-collapse" id="navbarCollapse">
-        <div class="navbar-nav">
-        	<a href="{% url 'music:contact-gigs' %}" class="nav-item nav-link active">Contact & Gigs</a>
-            <a href="{% url 'music:djangoverse-page' %}" class="nav-item nav-link active">DjangoVerse</a>
-            <a href="#" class="nav-item nav-link">Instagram</a>
-            <a href="#" class="nav-item nav-link">Facebook</a>
+        <div class="navbar-nav navbar-links">
+        	<a href="{% url 'music:contact-gigs' %}" class="navbar-brand">Contact & Gigs</a>
+            <a href="{% url 'music:djangoverse-page' %}" class="navbar-brand">DjangoVerse</a>
+            <a href="https://www.facebook.com/londondjangocollective" class="navbar-brand"><i class="fa fa-fw fa-facebook"></i></a>
+            <a href="https://www.instagram.com/londondjangocollective/" class="navbar-brand"><i class="fa fa-fw fa-instagram"></i></a>
+            
         </div>
     </div>
+
+
 </nav>
 
 
 {% block content %}{% endblock %}
 
-<footer>
+<!-- <footer>
 	<hr>
 	A footer: facebook, instagram, etc..
-</footer>
+</footer> -->
 </html>
 
