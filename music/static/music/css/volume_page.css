@@ -1,0 +1,50 @@
+.video_tune_box {
+	background-color: white;
+	height: 100px;
+	position: absolute;
+	right: 0;
+	top: 5%;
+	width: 50%;
+	height: 80%;
+	padding: 20px 80px;
+	text-align: center;
+}
+.video_tune_box > p {
+	font-size: 1em;
+}
+
+.audio_tune_description > p {
+	font-size: 1em;
+}
+
+.tune_composer_name {
+	font-size: 0.8em;
+	text-align: center;
+}
+
+.volume_relative {
+	position: relative;
+}
+.video_line {
+	width: 50%;
+}
+
+.video_title_box {
+	text-align: center;
+}
+.audio_tune_box {
+	background-color: white;
+	height: 120px;
+	width: 80%;
+	padding: 20px 20px;
+	margin-top: 50px;
+}
+
+.audio_tune_title {
+	text-align: left;
+}
+
+.audio_title_box {
+	border-right: 1px solid rgba(0,0,0,.1);
+	height: 100%;
+}

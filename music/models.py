@@ -3,6 +3,10 @@ from django.utils.text import slugify
 from ckeditor.fields import RichTextField
 from .util import create_youtube_embed, player_image_directory_path, tune_image_directory_path
 
+STATUS_CHOICES = (
+    ('d', 'Draft'),
+    ('p', 'Published'),
+)
 
 def player_img_path(instance, filename):
 	return f'LDC_Music/player_image/{instance.name}/{filename}'
@@ -44,6 +48,7 @@ class Volume(models.Model):
 	composer = models.ForeignKey(Player, null=True, blank=True, on_delete=models.CASCADE, related_name="composer")
 	video_tune = models.ForeignKey(Tune, null=True, blank=True, on_delete=models.CASCADE, related_name="video_tune")
 	audio_tune = models.ForeignKey(Tune, null=True, blank=True, on_delete=models.CASCADE, related_name="audio_tune")
+	status = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True, default='d')
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)

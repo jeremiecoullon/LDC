@@ -1,10 +1,30 @@
+{% if vol.status == "d" %}
+<div>
+{% else %}
 <a href="{% url 'music:volume' vol.slug %}" >
+{% endif %}
+	<!-- linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)) -->
+	<!-- linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)) -->
+	<!-- style='background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url("{% if vol.image %}{{vol.image.url}}{% endif %}")'> -->
+	<!-- darken images if volume is a draft. Else, lighten them -->
 	<div 
 	class='volume_box' 
-	style='background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0)), url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>
+	style='background-image: linear-gradient({% if vol.status == "d" %}
+		rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)
+		{% else %}
+		rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)
+	{% endif %}), url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>
 		<div class="volume_box_info">
 			<h3>{{ vol.name }}</h3>
 			<i>- {{ vol.composer }} -</i>
+
+			{% if vol.status == "d" %}
+				<p class="volume_coming_soon">coming soon...</p>
+			{% endif %}
 		</div>
 	</div>
+{% if vol.status == "d" %}
+</div>
+{% else %}
 </a>
+{% endif %}

@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from .models import Player, Volume
 
 def index(request):
@@ -9,7 +10,10 @@ def index(request):
 
 def volume(request, slug):
 	le_volume = get_object_or_404(Volume, slug=slug)
-	return render(request, 'music/volume_page.html', {'volume': le_volume})
+	if le_volume.status == "p" or request.user.is_staff:
+		return render(request, 'music/volume_page.html', {'volume': le_volume})
+	else:
+		raise Http404()
 
 def contact_gigs(request):
 	return render(request, 'music/contact_gigs.html')
