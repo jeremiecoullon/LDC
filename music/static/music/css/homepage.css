@@ -1,5 +1,6 @@
 .tagline{
-	font-style: italic;
+	font-size: 1.9em;
+	padding-bottom: 40px;
 }
 .musician_name {
     margin-bottom: 30px;
@@ -11,6 +12,13 @@
 }
 .volume_box_info{
 	padding-top: 25px;
+}
+.volume_box_info > h3 {
+	font-size: 35px;
+}
+
+.volume_box_composer {
+	font-size: 35px;
 }
 
 .volume_coming_soon {

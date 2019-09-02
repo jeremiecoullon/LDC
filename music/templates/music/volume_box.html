@@ -16,7 +16,7 @@
 	{% endif %}), url("{% if vol.image %}{{vol.image.url}}{% endif %}")'>
 		<div class="volume_box_info">
 			<h3>{{ vol.name }}</h3>
-			<i>- {{ vol.composer }} -</i>
+			<p class='volume_box_composer'>- {{ vol.composer }} -</p>
 
 			{% if vol.status == "d" %}
 				<p class="volume_coming_soon">coming soon...</p>

@@ -12,14 +12,24 @@
 .video_tune_box > p {
 	font-size: 1em;
 }
-
-.audio_tune_description > p {
-	font-size: 1em;
+.band_list > p {
+	font-size: 1.4em;
+}
+.audio_tune_description {
+	padding-top: 15px;
 }
 
-.tune_composer_name {
-	font-size: 0.8em;
+.audio_tune_description > p {
+	font-size: 1.5em;
+}
+
+.tune_composer_name_video {
+	font-size: 1.3em;
 	text-align: center;
+}
+.tune_composer_name_audio {
+	font-size: 1.3em;
+	text-align: left;
 }
 
 .volume_relative {
@@ -27,21 +37,26 @@
 }
 .video_line {
 	width: 50%;
+	padding: 0 ;
 }
 
 .video_title_box {
 	text-align: center;
 }
+.video_tune_name{
+	font-size: 3.2em;
+}
 .audio_tune_box {
 	background-color: white;
 	height: 120px;
 	width: 80%;
-	padding: 20px 20px;
+	padding: 15px 20px;
 	margin-top: 50px;
 }
 
-.audio_tune_title {
+.audio_tune_name {
 	text-align: left;
+	font-size: 2.5em;
 }
 
 .audio_title_box {

@@ -25,3 +25,5 @@ def DV(request):
 def DV_fullscreen(request):
 	return render(request, 'DV/DV_fullscreen.html')
 
+def memes(request):
+	return render(request, 'music/memes.html')

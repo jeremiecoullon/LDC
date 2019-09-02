@@ -11,9 +11,10 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 	<link href="https://fonts.googleapis.com/css?family=Josefin+Slab:100,300,300italic,400,400italic" rel="stylesheet">
-<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="{% static 'music/css/LDC_base.css' %}" rel="stylesheet">
-    <link href="{% static 'music/css/volume_page.css' %}" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" type="text/css" href="{% static 'music/css/MyFontsWebfontsKit.css' %}">
+  <link href="{% static 'music/css/LDC_base.css' %}" rel="stylesheet">
+  <link href="{% static 'music/css/volume_page.css' %}" rel="stylesheet">
 
 
     <title>London Django Collective - {{ volume.name }}</title>
@@ -33,14 +34,14 @@
 
   <div class='row volume_relative'>
     <div>
-      <iframe width="700" height="350" src="{{ volume.video_tune.video_embed }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>    
-      <!-- <img src="{% if volume.image %}{{volume.image.url}}{% endif %}"> -->
+      <!-- <iframe width="700" height="350" src="{{ volume.video_tune.video_embed }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+      <img width="700" height="" src="{% if volume.image %}{{volume.image.url}}{% endif %}">
     </div>
     
-      <div class='video_tune_box'>
+      <div class='video_tune_box band_list'>
         <div class='video_title_box'>
-          <h2>{{ volume.video_tune.name }}</h2>
-        <i class='tune_composer_name'>by {{ volume.composer }}</i>
+          <h1 class="video_tune_name">{{ volume.video_tune.name }}</h1>
+        <p class='tune_composer_name'>by {{ volume.composer }}</p>
         </div>
         
         <hr class='video_line'>
@@ -52,12 +53,15 @@
 
   <div class='row audio_tune_box'>
       <div class='col-md-3 audio_title_box'>
-        <h3 class='audio_tune_title'>{{ volume.audio_tune.name }}</h3>  
-        <i class='tune_composer_name'>by {{ volume.composer }}</i>  
+        <h3 class='audio_tune_name'>{{ volume.audio_tune.name }}</h3>  
+        <p class='tune_composer_name'>by {{ volume.composer }}</p>  
       </div>
 
       <div class='col-md-9 audio_tune_description'>
          <iframe style="border: 0; width: 70%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1356112642/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="http://latchepen.bandcamp.com/album/love-letters">Love Letters by Latchepen</a></iframe>
+
+         <!-- <iframe src="https://open.spotify.com/embed/album/6n4MbIocFJ9oHFszyhN1uF" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
+         
          {{ volume.audio_tune.band | safe }}
       </div>
     <vr>
