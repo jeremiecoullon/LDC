@@ -21,12 +21,21 @@
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav navbar-links">
         	<a href="{% url 'music:contact-gigs' %}" class="navbar-brand">Gigs & Contact</a>
-            <a href="{% url 'music:djangoverse-page' %}" class="navbar-brand">DjangoVerse</a>
-            <a href="{% url 'music:memes-page' %}" class="navbar-brand">GypsyJazzMemes</a>
             <a href="https://www.facebook.com/londondjangocollective" class="navbar-brand"><i class="fa fa-fw fa-facebook"></i></a>
-            <a href="https://www.instagram.com/londondjangocollective/" class="navbar-brand"><i class="fa fa-fw fa-instagram"></i></a>
+            <a href="https://www.instagram.com/londondjangocollective/" class="navbar-brand navbar-insta"><i class="fa fa-fw fa-instagram"></i></a>           
+            
+            <!-- <a href="{% url 'music:djangoverse-page' %}" class="navbar-brand navbar-DV ">DjangoVerse</a>
+            <a href="{% url 'music:memes-page' %}" class="navbar-brand ">GypsyJazzMemes</a> -->
+
+        <div class="navbar-nav DV_and_memes">
+            <a href="{% url 'music:djangoverse-page' %}" class="navbar-brand navbar-DV ">DjangoVerse</a>
+            <a href="{% url 'music:memes-page' %}" class="navbar-brand ">GypsyJazzMemes</a>
             
         </div>
+        </div>
+
+        
+
     </div>
 
 
