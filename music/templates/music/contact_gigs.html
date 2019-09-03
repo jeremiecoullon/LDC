@@ -13,7 +13,7 @@
   <link rel="stylesheet" type="text/css" href="{% static 'music/css/MyFontsWebfontsKit.css' %}">
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
     <link href="{% static 'music/css/LDC_base.css' %}" rel="stylesheet">
-    <!-- <link href="{% static 'music/css/volume_page.css' %}" rel="stylesheet"> -->
+    <link href="{% static 'music/css/contact_gigs.css' %}" rel="stylesheet">
 
 
     <title>London Django Collective - Gigs & Contact</title>
@@ -29,7 +29,22 @@
     <div class='row'>
       <div class="col-md-8 offset-md-2">
       <h1>Gigs</h1>
+      <ul class = "gig_list">
+        {% for gig in gigs %}
+          {% if gig.coming_up %}
+            <li>
+              <p>{{ gig.display_gig_date }}
+               - LDC @
+               {% if gig.gig_link %}<a href="{{ gig.gig_link }}" target="_blank">{{ gig.name }}</a>
+                 {% else %}{{ gig.name }}{% endif %}</p>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+
+      <hr class="horizontal_line">
       <p>Jam at <a href="https://www.kansassmittys.com/">Kansas Smitty's</a> every month-ish</p>
+      
       </div>
     </div>
   </section>

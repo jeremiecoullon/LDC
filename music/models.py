@@ -1,7 +1,8 @@
 from django.db import models
+from django.utils import timezone
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
-from .util import create_youtube_embed, player_image_directory_path, tune_image_directory_path
+from .util import create_youtube_embed, player_image_directory_path, tune_image_directory_path, format_date
 
 STATUS_CHOICES = (
     ('d', 'Draft'),
@@ -57,3 +58,31 @@ class Volume(models.Model):
 	def __str__(self):
 		return self.name
 
+
+
+class Gig(models.Model):
+    name = models.CharField(max_length=200)
+    gig_link = models.CharField(blank=True, max_length=200)
+    gig_date = models.DateTimeField("Gig date")
+    preview_date_admin = models.CharField(max_length=200, verbose_name="date",
+        blank=True, null=True, help_text="This will override the date above when shown on the site. Otherwise leave blank")
+
+    def __str__(self):
+        return self.name
+
+    def coming_up(self):
+        "Check whether the gig is in the future"
+        return self.gig_date >= timezone.now()
+
+    def display_gig_date(self):
+        """
+        Returns the gig date to display in the template
+        """
+        if self.preview_date_admin:
+            return self.preview_date_admin
+        else:
+            return format_date(le_date=self.gig_date)
+
+    def gig_date_filter(self):
+        "Publication date used to filter in views: also includes jamboree date"
+        return self.gig_date.date()

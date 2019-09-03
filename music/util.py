@@ -25,3 +25,22 @@ def create_youtube_embed(url):
     if "&" in url:
         url = url.split("&")[0]
     return os.path.join('https://www.youtube.com','embed',url+'?autoplay=1')
+
+
+def format_date(le_date):
+    """
+    Format date to display in gig list in the template.
+    For example: "Sunday 27 January 2018"
+    
+    Parameters
+    ----------
+    le_date: Datetime.date
+
+    Returns
+    -------
+    formatted_date: str
+    """
+    date_num = le_date.strftime("%d")
+    if date_num[0]=='0':
+        date_num=date_num[1]
+    return le_date.strftime("%A ")+date_num + le_date.strftime(" %B %Y")

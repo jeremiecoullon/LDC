@@ -40,10 +40,6 @@ class ARequest:
 
 
 class TestFilterFunction(TestCase):
-	def test_leview(self):
-		assert 1==1
-
-
 
 	def test_filter_nodes_player(self):
 		leplayer1 = create_player(name='Bob', country='UK', instrument='Guitar', isactive=True)
