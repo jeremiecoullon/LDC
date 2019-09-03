@@ -63,3 +63,35 @@
 	border-right: 1px solid rgba(0,0,0,.1);
 	height: 100%;
 }
+.image_vol_box {
+	width: 700px;
+	height: 350px;
+}
+
+/* Mobile stylings for overlapping box */
+@media (max-width: 767px) {
+	.video_tune_box {
+		position: static;
+		margin-top: 15px;
+		margin-left: 5%;
+		width: 90%;
+		padding: 15px 10px;
+	}
+	.image_vol_box {
+		width: 90%;
+		height: 300px;
+		margin-left: 5%;
+	}
+	.audio_tune_box {
+		width: 100%;
+		margin: 5% 0px;
+		padding: 15px 10px;
+		height: 300px;
+	}
+	.audio_title_box {
+		height: 110px;
+	}
+	.audio_tune_description {
+		padding-top: 0px;
+	}
+}
