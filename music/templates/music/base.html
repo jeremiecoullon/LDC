@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +13,8 @@
 
 
 <nav class="navbar navbar-expand-md navbar-light bg-LDC">
-    <a href="{% url 'music:index' %}" class="navbar-brand navbar-LDC">London Django Collective</a>
+    <!-- <a href="{% url 'music:index' %}" class="navbar-brand navbar-LDC">London Django Collective</a> -->
+    <a href="{% url 'music:index' %}" class="navbar-brand navbar-LDC"><img src="{% static 'music/images/logo_small.png' %}" class="navbar-logo"></a>
     <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
         <span class="navbar-toggler-icon"></span>
     </button>

@@ -49,7 +49,9 @@ a:hover{
     color: #B47B27;
     text-decoration: none;
 }
-
+.navbar-logo {
+    width: 60px;
+}
 
 @media(max-width: 414px) {
     h1 {
@@ -70,10 +72,10 @@ a:hover{
 
 @media(min-width: 945px) {
     .navbar-LDC {
-        padding-left: 10%;
+        padding-left: 14%;
     }
     .navbar-links {
         position: absolute;
-        right: 10%;
+        right: 15%;
     }
 }
