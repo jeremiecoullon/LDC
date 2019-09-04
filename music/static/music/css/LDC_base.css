@@ -63,7 +63,7 @@ a:hover{
 }
 
 @media (min-width: 768px){
-    .navbar-insta {
+    .navbar-last_social_media {
         padding-right: 20px;
     }
 }
