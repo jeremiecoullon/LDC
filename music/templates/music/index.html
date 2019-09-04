@@ -54,19 +54,14 @@
 		</div>
 		
 
-		<div class='row volume-add-padding-top'>
-			<div class='col-md-4 offset-md-2'>
-				{% for vol in volumes|slice:"3:4" %}
-					{% include 'music/volume_box.html' %}
-				{% endfor %}
-
+		<div class='row'>
+			{% for vol in volumes|slice:"3:6" %}
+			<div class='col-md-4 col_vol_box volume-add-padding-top'>
+				{% include 'music/volume_box.html' %}
 			</div>
-			<div class='col-md-4 col_vol_box'>
-				{% for vol in volumes|slice:"4:5" %}
-					{% include 'music/volume_box.html' %}
-				{% endfor %}
-			</div>
+			{% endfor %}
 		</div>
+
 
 	</section>
 

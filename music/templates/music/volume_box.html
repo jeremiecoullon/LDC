@@ -14,9 +14,6 @@
 		{% else %}
 		rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)
 	{% endif %}), url("{% if vol.image %}{{vol.image.url}}{% endif %}")'
-	alt-css='linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0), url("{% if vol.composer.image %}{{ vol.composer.image }}{% endif %}")'
-	status="{vol.status}"
-	css='linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0), url("{% if vol.image %}{{vol.image.url}}{% endif %}")'
 	>
 		<div class="volume_box_info">
 			<h3>{{ vol.name }}</h3>
@@ -29,6 +26,8 @@
 			{% endif %}
 		</div>
 	</div>
+
+	<!-- <img src="{% if vol.image %}{{vol.image.url}}{% endif %}" width=300 height=300> -->
 {% if vol.status == "d" %}
 </div>
 {% else %}
