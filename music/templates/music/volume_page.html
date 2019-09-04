@@ -46,7 +46,9 @@
       <div class='video_tune_box band_list'>
         <div class='video_title_box'>
           <h1 class="video_tune_name">{{ volume.video_tune.name }}</h1>
-        <p class='tune_composer_name'>by {{ volume.composer }}</p>
+          {% if volume.composer %}
+            <p class='tune_composer_name'>by {{ volume.composer }}</p>
+          {% endif %}
         </div>
         
         <hr class='video_line'>
@@ -56,6 +58,7 @@
   </div>
 
 
+  {% if volume.audio_tune %}
   <div class='row audio_tune_box'>
       <div class='col-md-3 audio_title_box'>
         <h3 class='audio_tune_name'>{{ volume.audio_tune.name }}</h3>  
@@ -71,6 +74,8 @@
       </div>
     <vr>
   </div>
+  {% endif %}
+
 </div>
 
 
