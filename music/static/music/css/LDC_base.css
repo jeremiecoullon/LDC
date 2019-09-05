@@ -24,6 +24,8 @@ h1 {
 
 .navbar-LDC {
     font-size: 25px;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 
@@ -56,6 +58,9 @@ a:hover{
 @media(max-width: 414px) {
     h1 {
         font-size: 4em;
+    }
+    .navbar-logo {
+        width: 55px;
     }
 }
 @media(max-width: 767px) {
