@@ -40,16 +40,16 @@
 	<p>Add yourself or your faverite players to the graph!</p>
 	<div class='row'>
 		<div class='col-md-4'>
-			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Add Player</a>
-			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Edit existing Player</a>		
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:post-player' %}" role="button">Add Player</a>
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:form-list-player' %}" role="button">Edit existing Player</a>		
 		</div>
 		<div class='col-md-4'>
-			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Add Band</a>
-			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Edit existing Band</a>		
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:post-band' %}" role="button">Add Band</a>
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:form-list-band' %}" role="button">Edit existing Band</a>		
 		</div>
 		<div class='col-md-4'>
 			<a class="btn btn-primary" href="{% url 'DjangoVerse:post-festival' %}" role="button">Add Festival</a>
-			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Edit existing Festival</a>		
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:form-list-festival' %}" role="button">Edit existing Festival</a>
 		</div>
 	</div>
 	
@@ -62,5 +62,6 @@
 </div>
 	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
 </body>
 {% endblock %}

@@ -53,8 +53,19 @@ urlpatterns = [
 
 	path('D3endpoint/', views.D3View.as_view(), name='D3-endpoint'),
 	path('', views.api_root),
-	path("forms/addfestival", views.post_festival, name='post-festival'),
+	# forms
+	path("forms/festival/add", views.post_festival, name='post-festival'),
 	path("forms/festival/<str:pk>/edit", views.edit_festival, name='edit-festival'),
+	path("forms/festival/list", views.form_list_festival, name='form-list-festival'),
+
+	# forms
+	path("forms/player/add", views.post_player, name='post-player'),
+	path("forms/player/<str:pk>/edit", views.edit_player, name='edit-player'),
+	path("forms/player/list", views.form_list_player, name='form-list-player'),
+
+	path("forms/band/add", views.post_band, name='post-band'),
+	path("forms/band/<str:pk>/edit", views.edit_band, name='edit-band'),
+	path("forms/band/list", views.form_list_band, name='form-list-band'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
