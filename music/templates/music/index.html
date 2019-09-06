@@ -89,39 +89,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-	var sourceSwap = function () {
-	    var $this = $(this);
-	    var newSource = $this.data('alt-src');
-	    // $this.data('alt-src', $this.attr('src'));
-	    // $this.attr('src', newSource);
-	    // $this.css('background-image: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.7)rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0)), url("${newSource}")')
-	    $this.css({"color": "red"});
-	};
-
-	var leHoverOn = function() {
-		var $this = $(this);
-		// var newCSS = $this.data("alt-css")
-		// var newCSS = 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0), url("/media/LDC_Music/volume_image/Volume%202/Robin_guitar_cropped.jpg")'
-		// var newCSS = "red"
-		$this.css({"background-image": 'linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0), url("/media/LDC_Music/volume_image/Volume%202/Robin_guitar_cropped.jpg")'})
-		// $this.css({"color": newCSS})
+	var sourceSwap = function() {
+		var $this = $(this).find(".image_box");
+		// only flip if volume is published
+		if ($this.attr('status') === 'p') {
+			var newSource = $this.attr('alt-src');
+			$this.attr('alt-src', $this.attr('src'));
+			$this.attr('src', newSource);	
+		}
 	}
-	var leHoverOff = function() {
-		var $this = $(this);
-		var oldCSS = $this.data("css");
-		$this.css({"background-image": oldCSS})
-		// $this.css({"color": "green"})
-	}
-	$(function () {
-	    $('.volume_box').hover(leHoverOn, leHoverOff);
-	    // $('.volume_box').hover(
-	    // 	function() {
-	    // 		$(this).css({"color": "red"})
-	    // 	}, 
-	    // 	function() {
-	    // 		$(this).css({"color": "green"})
-	    // 	})
-	});
+	$('.vol_pos_relative').hover(sourceSwap, sourceSwap)
     </script>
 
 </body>

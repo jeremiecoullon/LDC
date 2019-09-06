@@ -1,8 +1,8 @@
 {% if vol.status == "d" %}
 <!-- <div class='vol_pos_relative'> -->
-<a class='vol_pos_relative'>
+<a class='vol_pos_relative pickgradient'>
 {% else %}
-<a href="{% url 'music:volume' vol.slug %}" class='vol_pos_relative'>
+<a href="{% url 'music:volume' vol.slug %}" class='vol_pos_relative pickgradient'>
 {% endif %}
 <!-- 	<div 
 	class='volume_box' 
@@ -25,7 +25,13 @@
 	</div> -->
 
 
-	<img src="{% if vol.image %}{{vol.image.url}}{% endif %}" class="image_box">
+	<img 
+	src="{% if vol.image %}{{vol.image.url}}{% endif %}" 
+	alt-src="{% if vol.composer.image %}{{vol.composer.image.url}}{% endif %}" 
+	status='{{ vol.status }}' 
+	class="image_box"
+	>
+	<!-- <div class="volume_box_darkened_div">lala</div> -->
 	
 
 	<div class="volume_box_info">
