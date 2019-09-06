@@ -1,3 +1,4 @@
+from django.shortcuts import render, redirect, get_object_or_404
 from rest_framework import generics
 from rest_framework.decorators import api_view
 from rest_framework.views import APIView
@@ -10,10 +11,34 @@ from django.db.models import Q
 from DjangoVerse.serializers import BandSerializer, PlayerSerializer, LinkPlayerSerializer, InstrumentSerializer, VenueSerializer, FestivalSerializer, AlbumSerializer, LinkBandSerializer
 from DjangoVerse.serializers import BandCountrySerializer, PlayerCountrySerializer, VenueCountrySerializer, FestivalCountrySerializer, AlbumCountrySerializer
 from DjangoVerse.models import Band, Player, Instrument, Venue, Festival, Album
+from .forms import FestivalForm
 from country_list import countries_for_language
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
 
 
+# Djangoverse forms
+def post_festival(request):
+	if request.method == 'POST':
+		form = FestivalForm(request.POST, request.FILES)
+		if form.is_valid():
+			post = form.save(commit=False)
+			post.save()
+			return redirect('DjangoVerse:festival-list')
+	else:
+		form = FestivalForm()
+	return render(request, 'DjangoVerse/festivalform.html', {'form': form})
+
+def edit_festival(request, pk):
+	festival = get_object_or_404(Festival, pk=pk)
+	if request.method == 'POST':
+		form = FestivalForm(request.POST, request.FILES, instance=festival)
+		if form.is_valid():
+			festival = form.save(commit=False)
+			festival.save()
+			return redirect('DjangoVerse:festival-list')
+	else:
+		form = FestivalForm(instance=festival)
+	return render(request, 'Djangoverse/festivalform.html', {'form': form})
 
 
 
@@ -224,13 +249,13 @@ class D3View(APIView):
 @api_view(['GET'])
 def api_root(request, format=None):
 	return Response({
-		'D3_endpoint': reverse('D3-endpoint', request=request, format=format),
-		'players': reverse('player-list', request=request, format=format),
-		'bands': reverse('band-list', request=request, format=format),
-		'festivals': reverse('festival-list', request=request, format=format),
-		# 'venues': reverse('venue-list', request=request, format=format),
-		# 'albums': reverse('album-list', request=request, format=format),
-		'instruments': reverse('instrument-list', request=request, format=format),
+		'D3_endpoint': reverse('DjangoVerse:D3-endpoint', request=request, format=format),
+		'players': reverse('DjangoVerse:player-list', request=request, format=format),
+		'bands': reverse('DjangoVerse:band-list', request=request, format=format),
+		'festivals': reverse('DjangoVerse:festival-list', request=request, format=format),
+		# 'venues': reverse('DjangoVerse:venue-list', request=request, format=format),
+		# 'albums': reverse('DjangoVerse:album-list', request=request, format=format),
+		'instruments': reverse('DjangoVerse:instrument-list', request=request, format=format),
 		})
 
 

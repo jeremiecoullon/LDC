@@ -5,20 +5,24 @@ base_fields = ('name', 'url', 'id', 'description', 'country', 'external_URL', 'i
 
 
 class BandSerializer(serializers.ModelSerializer):
-
+	url = serializers.HyperlinkedIdentityField(
+        view_name='DjangoVerse:band-detail',
+    )
 	class Meta:
 		model = Band
 		fields = base_fields + ('members', 'isactive', 'festival', 'venue', 'album')
 
 
 class InstrumentSerializer(serializers.ModelSerializer):
-
 	class Meta:
 		model = Instrument
 		fields = ('name',)
 
 class PlayerSerializer(serializers.ModelSerializer):
 	instrument = InstrumentSerializer(many=True)
+	url = serializers.HyperlinkedIdentityField(
+        view_name='DjangoVerse:player-detail',
+    )
 
 	class Meta:
 		model = Player
@@ -27,21 +31,27 @@ class PlayerSerializer(serializers.ModelSerializer):
 
 
 class FestivalSerializer(serializers.ModelSerializer):
-
+	url = serializers.HyperlinkedIdentityField(
+        view_name='DjangoVerse:festival-detail',
+    )
 	class Meta:
 		model = Festival
 		fields =  base_fields + ('isactive', 'bandsplayed', 'playersplayed')
 
 
 class VenueSerializer(serializers.ModelSerializer):
-
+	url = serializers.HyperlinkedIdentityField(
+        view_name='DjangoVerse:venue-detail',
+    )
 	class Meta:
 		model = Venue
 		fields = base_fields + ('isactive', 'bandsplayed', 'playersplayed')
 
 
 class AlbumSerializer(serializers.ModelSerializer):
-
+	url = serializers.HyperlinkedIdentityField(
+        view_name='DjangoVerse:album-detail',
+    )
 	class Meta:
 		model = Album
 		fields = base_fields + ('date', 'band', 'playersplayed')

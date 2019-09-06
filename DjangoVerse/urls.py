@@ -30,7 +30,7 @@ festival_detail = views.FestivalViewSet.as_view(detail_dict)
 
 # venue_list = views.VenueViewSet.as_view(list_dict)
 # venue_detail = views.VenueViewSet.as_view(detail_dict)
-
+app_name = 'DjangoVerse'
 
 # commented out 'albums' and 'venue' URLS for now. Can add them later if needed
 urlpatterns = [
@@ -52,7 +52,9 @@ urlpatterns = [
 	path('search/', views.SearchView.as_view()),
 
 	path('D3endpoint/', views.D3View.as_view(), name='D3-endpoint'),
-	path('', views.api_root)
+	path('', views.api_root),
+	path("forms/addfestival", views.post_festival, name='post-festival'),
+	path("forms/festival/<str:pk>/edit", views.edit_festival, name='edit-festival'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

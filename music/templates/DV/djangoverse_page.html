@@ -37,12 +37,26 @@
 
 	<h3>Tips about adding information</h3>
 
-	<li>Add yourself or your faverite players to the graph!</li>
-	<li>other</li>
+	<p>Add yourself or your faverite players to the graph!</p>
+	<div class='row'>
+		<div class='col-md-4'>
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Add Player</a>
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Edit existing Player</a>		
+		</div>
+		<div class='col-md-4'>
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Add Band</a>
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Edit existing Band</a>		
+		</div>
+		<div class='col-md-4'>
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:post-festival' %}" role="button">Add Festival</a>
+			<a class="btn btn-primary" href="{% url 'DjangoVerse:edit-festival' '164b3293-748f-4b26-9af4-4b61ad56d59b' %}" role="button">Edit existing Festival</a>		
+		</div>
+	</div>
+	
 
 	<h2>Contribute</h2>
-
-	Send any feedback, bugs, or other to jeremie.coullon@gmail.com. If you're a nerd you can open an issue or make a pull request on  <a href="https://github.com/jeremiecoullon/DjangoVerse-react">Github</a>
+	<p>Send any feedback, bugs, or other to jeremie.coullon@gmail.com. If you're a nerd you can open an issue or make a pull request on  <a href="https://github.com/jeremiecoullon/DjangoVerse-react">Github</a></p>
+	
 	<hr>
 
 </div>
