@@ -48,10 +48,11 @@
 }
 .audio_tune_box {
 	background-color: white;
-	height: 120px;
-	width: 80%;
+	height: 150px;
+	width: 90%;
 	padding: 15px 20px;
 	margin-top: 50px;
+	margin-bottom: 30px;
 }
 
 .audio_tune_name {
@@ -60,12 +61,30 @@
 }
 
 .audio_title_box {
-	border-right: 1px solid rgba(0,0,0,.1);
+	/*border-right: 1px solid rgba(0,0,0,.1);*/
 	height: 100%;
+}
+.audio_tune_download_col {
+	border-right: 1px solid rgba(0,0,0,.1);
+	padding-top: 2%;
+	padding-left: 0px;
+}
+#audio_tune_itunes_logo {
+	position: relative;
+	top: 5px;
+	width: 80%;
 }
 .image_vol_box {
 	width: 700px;
 	height: 350px;
+}
+
+/* for spotify and bandcamp download buttons */
+.video_tune_download_wrapper > a {
+	/*margin-left: 5px;
+	margin-right: 5px;*/
+	margin: 5px;
+
 }
 
 /* Mobile stylings for overlapping box */
@@ -86,12 +105,25 @@
 		width: 100%;
 		margin: 5% 0px;
 		padding: 15px 10px;
-		height: 300px;
+		height: 350px;
 	}
 	.audio_title_box {
 		height: 110px;
 	}
 	.audio_tune_description {
 		padding-top: 0px;
+	}
+	.audio_tune_download_col {
+	margin-bottom: 18px;
+}
+}
+
+@media (min-width: 768px) and (max-width: 1199px) {
+	.video_tune_box {
+		padding: 5px 20px;
+		height: 94%;
+	}
+	.audio_tune_box {
+		height: 200px;
 	}
 }
