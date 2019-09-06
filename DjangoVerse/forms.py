@@ -12,7 +12,7 @@ class PlayerForm(ModelForm):
 
 	class Meta:
 		model = Player
-		fields = ('name', 'country', 'description', 'instrument', 'external_URL', 'image', 'isactive')
+		fields = ('name', 'country', 'description', 'instrument', 'external_URL', 'image', 'isactive', 'band', 'festival')
 
 
 class FestivalForm(ModelForm):
@@ -26,5 +26,5 @@ class FestivalForm(ModelForm):
 class BandForm(ModelForm):
 
 	class Meta:
-		model = Festival
+		model = Band
 		fields = ('name', 'country', 'description', 'external_URL', 'image', 'isactive')

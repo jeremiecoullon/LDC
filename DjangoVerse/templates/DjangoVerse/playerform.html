@@ -24,6 +24,21 @@
 				</div>
 			</div>
 			<div class='form-row'>
+				<div class='form-group col-md-6 mb-0'>
+					{{ form.instrument|as_crispy_field }}
+				</div>
+			</div>
+
+			<div class='form-row'>
+				<div class='form-group col-md-6 mb-0'>
+					{{ form.band|as_crispy_field }}
+				</div>
+				<div class='form-group col-md-6 mb-0'>
+					{{ form.festival|as_crispy_field }}
+				</div>
+			</div>
+
+			<div class='form-row'>
 				<div class='form-group col-md-12'>
 					{{ form.description|as_crispy_field }}
 				</div>	
