@@ -59,11 +59,18 @@ class AlbumSerializer(serializers.ModelSerializer):
 
 
 class LinkPlayerSerializer(serializers.ModelSerializer):
+	url = serializers.HyperlinkedIdentityField(
+        view_name='DjangoVerse:player-detail',
+    )
+
 	class Meta:
 		model = Player
 		fields = ('id', 'url', 'band', 'festival', 'venue', 'album')
 
 class LinkBandSerializer(serializers.ModelSerializer):
+	url = serializers.HyperlinkedIdentityField(
+        view_name='DjangoVerse:band-detail',
+    )
 	class Meta:
 		model = Band
 		fields = ('id', 'url', 'festival', 'venue', 'album')
