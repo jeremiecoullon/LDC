@@ -17,7 +17,7 @@ def volume_img_path(instance, filename):
 
 class Tune(models.Model):
 	name = models.CharField(max_length=200)
-	image = models.ImageField(upload_to=tune_image_directory_path, null=True, blank=True)
+	image = models.ImageField(upload_to=tune_image_directory_path, null=True, blank=True, help_text="Only need an image for the video tune")
 	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL")
 	band = RichTextField(default="list of musicians", config_name='default')
 	
@@ -50,6 +50,8 @@ class Volume(models.Model):
 	video_tune = models.ForeignKey(Tune, null=True, blank=True, on_delete=models.CASCADE, related_name="video_tune")
 	audio_tune = models.ForeignKey(Tune, null=True, blank=True, on_delete=models.CASCADE, related_name="audio_tune")
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True, default='d')
+	release_date = models.CharField(max_length=200, blank=True, help_text="For this to appear on the homepage: the volume must be in draft and both release date and preorder must be filled in")
+	pre_order = models.CharField(max_length=500, blank=True, help_text="For this to appear on the homepage: the volume must be in draft and both release date and preorder must be filled in")
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)

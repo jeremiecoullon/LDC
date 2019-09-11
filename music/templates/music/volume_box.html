@@ -1,5 +1,5 @@
 {% if vol.status == "d" %}
-<a class='vol_pos_relative addgradientdraft'>
+<a {% if vol.status == "d" and vol.pre_order %}href="{{vol.pre_order}}"{%endif%} class='vol_pos_relative addgradientdraft'>
 {% else %}
 <a href="{% url 'music:volume' vol.slug %}" class='vol_pos_relative addgradientpublished'>
 {% endif %}
@@ -11,14 +11,19 @@
 	class="image_box"
 	>
 	<div class="volume_box_info">
-		<h3>{{ vol.name }}</h3>
-		{% if vol.composer %}
-			<p class='volume_box_composer'>- {{ vol.composer }} -</p>
-		{% endif %}
+
 
 		{% if vol.status == "d" %}
-			<p class="volume_coming_soon">coming soon...</p>
+			{% if vol.release_date and vol.pre_order %}
+				<p class='volume_coming_soon'>Release date: {{ vol.release_date }}</p>
+				<p class='volume_coming_soon'>Presave on Spotify here!</p>
+			{% else %}
+				<p class="volume_coming_soon">coming soon...</p>
+			{% endif %}
 		{% endif %}
+
+
+
 	</div>
 	
 {% if vol.status == "d" %}

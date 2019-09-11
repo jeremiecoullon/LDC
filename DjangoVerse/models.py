@@ -99,7 +99,7 @@ class Album(BaseInfo):
 			# set self.image to new_image
 			self.thumbnail = new_image
 		# save
-		super(Venue, self).save(*args, **kwargs)
+		super(Album, self).save(*args, **kwargs)
 
 class Band(BaseInfo):
 	image = models.ImageField(upload_to=band_img_path, null=True, blank=True)

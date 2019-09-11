@@ -26,7 +26,6 @@
 
   <div class="text-center content-section">
     <h1>{{ volume.name }}</h1>
-    <!-- <i>{{ volume.composer }}</i> -->
   </div>
 
 
@@ -38,7 +37,7 @@
       <!-- <img width="700" height="350" src="{% if volume.image %}{{volume.image.url}}{% endif %}"> -->
 
     <!-- <div class="youtube_videos"> -->
-      <a class="fancybox_videos fancybox.iframe" href="{{ volume.video_tune.video_embed }}"><img src="{% if volume.image %}{{volume.image.url}}{% endif %}" class="image_vol_box" /></a>
+      <a class="fancybox_videos fancybox.iframe" href="{{ volume.video_tune.video_embed }}"><img src="{% if volume.video_tune.image %}{{volume.video_tune.image.url}}{% endif %}" class="image_vol_box" /></a>
     <!-- </div> -->
 
     </div>
