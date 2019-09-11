@@ -8,6 +8,7 @@
 	src="{% if vol.image %}{{vol.image.url}}{% endif %}" 
 	alt-src="{% if vol.composer.image %}{{vol.composer.image.url}}{% endif %}" 
 	status='{{ vol.status }}' 
+	le_vol_composer='{{ vol.composer.image }}'
 	class="image_box"
 	>
 	<div class="volume_box_info">

@@ -52,6 +52,10 @@ class Volume(models.Model):
 	status = models.CharField(max_length=1, choices=STATUS_CHOICES, blank=True, default='d')
 	release_date = models.CharField(max_length=200, blank=True, help_text="For this to appear on the homepage: the volume must be in draft and both release date and preorder must be filled in")
 	pre_order = models.CharField(max_length=500, blank=True, help_text="For this to appear on the homepage: the volume must be in draft and both release date and preorder must be filled in")
+	spotify = models.CharField(max_length=500, blank=True, help_text="Link to volume on Spotify")
+	apple_music = models.CharField(max_length=500, blank=True, help_text="Link to volume on Apple Music")
+	amazon = models.CharField(max_length=500, blank=True, help_text="Link to volume on Amazon")
+	bandcamp = models.CharField(max_length=500, blank=True, help_text="Link to volume on BandCamp")
 
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)

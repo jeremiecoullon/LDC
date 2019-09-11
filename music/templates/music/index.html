@@ -92,11 +92,11 @@
     <script type="text/javascript">
 	var sourceSwap = function() {
 		var $this = $(this).find(".image_box");
-		// only flip if volume is published
-		if ($this.attr('status') === 'p') {
+		// only flip if volume is published and if the volume has a composer (ex: Tiger rag doesn't have a composer)
+		if ($this.attr('status') === 'p' && $this.attr('le_vol_composer')) {
 			var newSource = $this.attr('alt-src');
 			$this.attr('alt-src', $this.attr('src'));
-			$this.attr('src', newSource);	
+			$this.attr('src', newSource);
 		}
 	}
 	$('.vol_pos_relative').hover(sourceSwap, sourceSwap)

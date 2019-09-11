@@ -26,21 +26,45 @@
 
   <div class="text-center content-section">
     <h1>{{ volume.name }}</h1>
+
+    <div class="download_buttons_wrapper">
+      {% if volume.spotify %}
+        <a href="{{ volume.spotify }}" class="download_button"><img src="{% static 'music/images/Spotify_Icon_CMYK_Green.png' %}" width=50px;></a>
+      {% endif %}
+
+      {% if volume.bandcamp %}
+        <a href="{{ volume.bandcamp }}" class="download_button"><img src="{% static 'music/images/bandcamp-button-square-green-128.png' %}" width=50px;></a>
+      {% endif %}
+
+      {% if volume.apple_music %}
+      <a href="{{ volume.apple_music }}" class="download_button">{% include 'music/itunes_logo.html' %}</a>
+        
+      {% endif %}
+
+      {% if volume.amazon %}  
+        <a href="{{ volume.amazon }}" class="download_button"><img src="{% static 'music/images/amazon_music.png' %}" width=50px;></a>
+      {% endif %}
+    </div>
   </div>
 
 
 <div class='container content-section'>
 
   <div class='row volume_relative'>
-    <div>
-      <!-- <iframe width="700" height="350" src="{{ volume.video_tune.video_embed }}" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
-      <!-- <img width="700" height="350" src="{% if volume.image %}{{volume.image.url}}{% endif %}"> -->
+      <div class="video_wrapper">
+      <a class="fancybox_videos fancybox.iframe" href="{{ volume.video_tune.video_embed }}"><img src="{% if volume.video_tune.image %}{{volume.video_tune.image.url}}{% endif %}" class="image_vol_box" /></a> 
+      <div class="video_button_wrapper">
+          <svg height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 1194.8 1194.8" style="enable-background:new 0 0 1194.8 1194.8;" xml:space="preserve">
+          <style type="text/css">
+            .st0{fill:none;stroke:#FFFFFF;stroke-width:20;stroke-miterlimit:10;}
+            .st1{fill:white}
+          </style>
+          <polygon class="st0 st1" points="457.2,844.9 457.2,349.9 839.6,599.6 "></polygon>
+          <circle class="st0" cx="597.4" cy="597.4" r="587.4"></circle>
+          </svg>
+        </div> 
+      </div>
 
-    <!-- <div class="youtube_videos"> -->
-      <a class="fancybox_videos fancybox.iframe" href="{{ volume.video_tune.video_embed }}"><img src="{% if volume.video_tune.image %}{{volume.video_tune.image.url}}{% endif %}" class="image_vol_box" /></a>
-    <!-- </div> -->
-
-    </div>
     
       <div class='video_tune_box band_list'>
         <div class='video_title_box'>
@@ -52,12 +76,6 @@
         
         <hr class='video_line'>
         {{ volume.video_tune.band | safe }}
-        <!-- <p>Download here</p> -->
-        <div class="video_tune_download_wrapper">
-          <a href="https://www.spotify.com/uk/"><img src="{% static 'music/images/Spotify_Icon_CMYK_Green.png' %}" width=50px;></a>
-          <a href="https://bandcamp.com/"><img src="{% static 'music/images/bandcamp-button-square-green-128.png' %}" width=50px;></a>
-          <a href="https://www.apple.com/uk/itunes/">{% include 'music/itunes_logo.html' %}</a>
-        </div>
       </div>
   </div>
 
@@ -68,18 +86,8 @@
         <h3 class='audio_tune_name'>{{ volume.audio_tune.name }}</h3>  
         <p class='tune_composer_name'>by {{ volume.composer }}</p>  
       </div>
-      <div class="col-md-2 audio_tune_download_col">
-        <div class="video_tune_download_wrapper">
-          <a href="https://www.spotify.com/uk/"><img src="{% static 'music/images/Spotify_Icon_CMYK_Green.png' %}" width=50px;></a>
-          <a href="https://bandcamp.com/"><img src="{% static 'music/images/bandcamp-button-square-green-128.png' %}" width=50px;></a>
-          <a href="https://www.apple.com/uk/itunes/" id="audio_tune_itunes_logo">{% include 'music/itunes_logo.html' %}</a>
-        </div>
-      </div>
-
-      <div class='col-md-7 audio_tune_description'>
+      <div class='col-md-9 audio_tune_description'>
          <iframe style="border: 0; width: 70%; height: 42px;" src="https://bandcamp.com/EmbeddedPlayer/album=1356112642/size=small/bgcol=ffffff/linkcol=0687f5/transparent=true/" seamless><a href="http://latchepen.bandcamp.com/album/love-letters">Love Letters by Latchepen</a></iframe>
-
-         <!-- <iframe src="https://open.spotify.com/embed/album/6n4MbIocFJ9oHFszyhN1uF" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe> -->
          
          {{ volume.audio_tune.band | safe }}
       </div>

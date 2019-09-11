@@ -5,8 +5,8 @@
 	right: 0;
 	top: 5%;
 	width: 50%;
-	height: 88%;
-	padding: 15px 80px;
+	height: 80%;
+	padding: 30px 77px;
 	text-align: center;
 }
 .video_tune_box > p {
@@ -17,6 +17,7 @@
 }
 .audio_tune_description {
 	padding-top: 15px;
+	border-left: 1px solid rgba(0,0,0,.1);
 }
 
 .audio_tune_description > p {
@@ -64,11 +65,6 @@
 	/*border-right: 1px solid rgba(0,0,0,.1);*/
 	height: 100%;
 }
-.audio_tune_download_col {
-	border-right: 1px solid rgba(0,0,0,.1);
-	padding-top: 2%;
-	padding-left: 0px;
-}
 #audio_tune_itunes_logo {
 	position: relative;
 	top: 5px;
@@ -79,12 +75,17 @@
 	/*height: 350px;*/
 }
 
-/* for spotify and bandcamp download buttons */
-.video_tune_download_wrapper > a {
-	/*margin-left: 5px;
-	margin-right: 5px;*/
-	margin: 5px;
-
+.video_wrapper {
+	position: relative;
+}
+.video_button_wrapper {
+	height: 100px;
+	position: absolute;
+	top: 39%;
+	left: 44%;
+}
+.download_button{
+	padding-left: 10px;
 }
 
 /* Mobile stylings for overlapping box */
@@ -113,9 +114,6 @@
 	.audio_tune_description {
 		padding-top: 0px;
 	}
-	.audio_tune_download_col {
-	margin-bottom: 18px;
-}
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
