@@ -1,7 +1,7 @@
 {% if vol.status == "d" %}
-<a {% if vol.status == "d" and vol.pre_order %}href="{{vol.pre_order}}"{%endif%} class='vol_pos_relative addgradientdraft'>
+<a {% if vol.status == "d" and vol.pre_order %}href="{{vol.pre_order}}"{%endif%} class='addgradientdraft'>
 {% else %}
-<a href="{% url 'music:volume' vol.slug %}" class='vol_pos_relative addgradientpublished'>
+<a href="{% url 'music:volume' vol.slug %}" class='addgradientpublished'>
 {% endif %}
 
 	<img 
@@ -16,8 +16,8 @@
 
 		{% if vol.status == "d" %}
 			{% if vol.release_date and vol.pre_order %}
-				<p class='volume_coming_soon'>Release date: {{ vol.release_date }}</p>
-				<p class='volume_coming_soon'>Presave on Spotify here!</p>
+				<p class='volume_coming_soon vol_preorder_release'>Release date: {{ vol.release_date }}</p>
+				<p class='volume_coming_soon vol_preorder_release'>Presave on Spotify here!</p>
 			{% else %}
 				<p class="volume_coming_soon">coming soon...</p>
 			{% endif %}

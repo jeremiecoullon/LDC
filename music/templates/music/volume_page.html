@@ -29,20 +29,20 @@
 
     <div class="download_buttons_wrapper">
       {% if volume.spotify %}
-        <a href="{{ volume.spotify }}" class="download_button"><img src="{% static 'music/images/Spotify_Icon_CMYK_Green.png' %}" width=50px;></a>
+        <a href="{{ volume.spotify }}" class="download_button"><img class='download_image_logo' src="{% static 'music/images/Spotify_Icon_CMYK_Green.png' %}"></a>
       {% endif %}
 
       {% if volume.bandcamp %}
-        <a href="{{ volume.bandcamp }}" class="download_button"><img src="{% static 'music/images/bandcamp-button-square-green-128.png' %}" width=50px;></a>
+        <a href="{{ volume.bandcamp }}" class="download_button"><img class='download_image_logo' src="{% static 'music/images/bandcamp-button-square-green-128.png' %}"></a>
       {% endif %}
 
       {% if volume.apple_music %}
-      <a href="{{ volume.apple_music }}" class="download_button">{% include 'music/itunes_logo.html' %}</a>
+      <a href="{{ volume.apple_music }}" class="download_button download_svg_logo">{% include 'music/itunes_logo.html' %}</a>
         
       {% endif %}
 
       {% if volume.amazon %}  
-        <a href="{{ volume.amazon }}" class="download_button"><img src="{% static 'music/images/amazon_music.png' %}" width=50px;></a>
+        <a href="{{ volume.amazon }}" class="download_button"><img class='download_image_logo' src="{% static 'music/images/amazon_music.png' %}"></a>
       {% endif %}
     </div>
   </div>
@@ -52,17 +52,19 @@
 
   <div class='row volume_relative'>
       <div class="video_wrapper">
-      <a class="fancybox_videos fancybox.iframe" href="{{ volume.video_tune.video_embed }}"><img src="{% if volume.video_tune.image %}{{volume.video_tune.image.url}}{% endif %}" class="image_vol_box" /></a> 
-      <div class="video_button_wrapper">
-          <svg height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 1194.8 1194.8" style="enable-background:new 0 0 1194.8 1194.8;" xml:space="preserve">
-          <style type="text/css">
-            .st0{fill:none;stroke:#FFFFFF;stroke-width:20;stroke-miterlimit:10;}
-            .st1{fill:white}
-          </style>
-          <polygon class="st0 st1" points="457.2,844.9 457.2,349.9 839.6,599.6 "></polygon>
-          <circle class="st0" cx="597.4" cy="597.4" r="587.4"></circle>
-          </svg>
-        </div> 
+      <a class="fancybox_videos fancybox.iframe" href="{{ volume.video_tune.video_embed }}"><img src="{% if volume.video_tune.image %}{{volume.video_tune.image.url}}{% endif %}" class="image_vol_box" />
+        <div class="video_button_wrapper">
+            <svg height="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" viewBox="0 0 1194.8 1194.8" style="enable-background:new 0 0 1194.8 1194.8;" xml:space="preserve">
+            <style type="text/css">
+              .st0{fill:none;stroke:#FFFFFF;stroke-width:20;stroke-miterlimit:10;}
+              .st1{fill:white}
+            </style>
+            <polygon class="st0 st1" points="457.2,844.9 457.2,349.9 839.6,599.6 "></polygon>
+            <circle class="st0" cx="597.4" cy="597.4" r="587.4"></circle>
+            </svg>
+        </div>
+      </a> 
+ 
       </div>
 
     

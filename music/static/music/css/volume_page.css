@@ -81,13 +81,19 @@
 .video_button_wrapper {
 	height: 100px;
 	position: absolute;
-	top: 39%;
-	left: 44%;
+	top: 47%;
+	left: 50%;
+	transform: translate(-50%, -50%)
 }
 .download_button{
 	padding-left: 10px;
 }
-
+.download_image_logo {
+	width: 50px;
+}
+.download_svg_logo {
+	width: 130px;
+}
 /* Mobile stylings for overlapping box */
 @media (max-width: 767px) {
 	.video_tune_box {
@@ -114,6 +120,12 @@
 	.audio_tune_description {
 		padding-top: 0px;
 	}
+	.download_image_logo {
+		width: 28px;
+	}
+	.download_svg_logo {
+		width: 80px;
+	}
 }
 
 @media (min-width: 768px) and (max-width: 1199px) {
@@ -123,5 +135,29 @@
 	}
 	.audio_tune_box {
 		height: 200px;
+	}
+}
+
+
+@media (min-width: 768px) and (max-width: 991px) {
+	.image_vol_box {
+		width: 440px;
+	}
+	.video_tune_name {
+		font-size: 2.6em;
+	}
+	.band_list > p {
+		font-size: 1.2em;
+	}
+	.video_tune_box {
+		padding: 5px 15px;
+	}
+	.tune_composer_name {
+		font-size: 20px;
+	}
+}
+@media (min-width: 992px) and (max-width: 1199px) {
+	.image_vol_box {
+		width: 550px;
 	}
 }
