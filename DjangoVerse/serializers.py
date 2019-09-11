@@ -26,7 +26,7 @@ class PlayerSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Player
-		fields = base_fields + ('instrument', 'band', 'isactive', 'festival', 'venue', 'album',)
+		fields = base_fields + ('instrument', 'band', 'isactive', 'festival', 'venue', 'album', 'gigged_with')
 
 
 
@@ -65,7 +65,7 @@ class LinkPlayerSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Player
-		fields = ('id', 'url', 'band', 'festival', 'venue', 'album')
+		fields = ('id', 'url', 'band', 'festival', 'venue', 'album', 'gigged_with')
 
 class LinkBandSerializer(serializers.ModelSerializer):
 	url = serializers.HyperlinkedIdentityField(

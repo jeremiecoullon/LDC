@@ -13,6 +13,7 @@ from DjangoVerse.serializers import BandCountrySerializer, PlayerCountrySerializ
 from DjangoVerse.models import Band, Player, Instrument, Venue, Festival, Album
 from .forms import FestivalForm, PlayerForm, BandForm
 from country_list import countries_for_language
+import itertools
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
 
 
@@ -253,7 +254,9 @@ class SearchView(APIView):
 
 class D3View(APIView):
 	"""
-	API endpoint for D3
+	API endpoint for D3: super bloated as at first it deals with a bunch of different models..
+	Note: the first few lines create the list of nodes, and the bit between 'Start' and 'End' creates links between players.
+	The rest of it deals with the other models (so doesn't get called if you don't inlude 'band', 'venue', or 'festival' in the query)
 	"""
 
 	def get(self, request, format=None):
@@ -276,9 +279,36 @@ class D3View(APIView):
 		# list_player_id = [e[0] for e in model_dict['player']['qs'].values_list('id')]
 		# print(list_player_id)
 
+
 		if 'player' in request.query_params.keys():
 			linkplayerserializer = LinkPlayerSerializer(model_dict['player']['qs'], many=True, context={'request': request})
 			other_model_list = [e for e in ['band', 'festival', 'venue', 'album'] if e in request.query_params.keys()]
+
+			# ================================================
+			# Start: Create links between players
+			# ================================================
+			# define a new list that will have a bunch of 2-lists in it (with duplicates)
+			gigged_with_list = []
+			for od in linkplayerserializer.data:
+				for otherplayer in od['gigged_with']:
+					gigged_with_list.append([od['id'], str(otherplayer)])
+
+			# sort each 2-list in gigged_with_list
+			for e in gigged_with_list:
+				e.sort()
+
+			# remove duplicate 2-lists (see https://stackoverflow.com/questions/2213923/removing-duplicates-from-a-list-of-lists)
+			gigged_with_list.sort()
+			no_dup_gigged_with_list = list(gigged_with_list for gigged_with_list,_ in itertools.groupby(gigged_with_list))
+
+			# append list of unique 2-lists to link_list
+			for elem in no_dup_gigged_with_list:
+				link_list.append({'source': elem[0], 'target': elem[1]})
+			# ================================================
+			# End of creating links between players
+			# ================================================
+
+			print(link_list)
 
 			for elem in linkplayerserializer.data:
 				for othermodel in other_model_list:

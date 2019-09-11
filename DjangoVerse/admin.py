@@ -7,7 +7,9 @@ from .models import Player, Band, Festival, Venue, Album, Instrument
 @admin.register(Player)
 class PlayerAdmin(admin.ModelAdmin):
 	filter_horizontal = ('band', 'instrument', 'festival',)# 'venue', 'album',)
-	exclude = ('thumbnail',)
+	exclude = ('thumbnail', 'band', 'festival')
+	# fk_name = 'from_player'
+	filter_horizontal = ('gigged_with', 'instrument')
 
 @admin.register(Band)
 class BandAdmin(admin.ModelAdmin):

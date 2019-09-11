@@ -130,6 +130,7 @@ class Player(BaseInfo):
 	festival = models.ManyToManyField(Festival, blank=True, related_name='playersplayed')
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
 	album = models.ManyToManyField(Album, blank=True, related_name='playersplayed')
+	gigged_with = models.ManyToManyField('self', blank=True)
 
 	def save(self, *args, **kwargs):
 		if self.image:
