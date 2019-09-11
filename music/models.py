@@ -18,11 +18,14 @@ def volume_img_path(instance, filename):
 class Tune(models.Model):
 	name = models.CharField(max_length=200)
 	image = models.ImageField(upload_to=tune_image_directory_path, null=True, blank=True, help_text="Only need an image for the video tune")
-	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL")
+	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to the youtube video")
+	bandcamp_embed = models.CharField(max_length=500, blank=True, help_text="Simply paste the html from the bandcamp embed player (on the bandcamp website) for the audio-only tune. Choose the thinnest embedding option.")
 	band = RichTextField(default="list of musicians", config_name='default')
 	
 	def save(self, *args, **kwargs):
 		self.video_embed = create_youtube_embed(url=self.video_embed)
+		# set the width to 70% rather than the default of 100%
+		self.bandcamp_embed = self.bandcamp_embed.replace("width: 100%", "width: 70%", 1)
 		super(Tune, self).save(*args, **kwargs)
 
 	def __str__(self):
