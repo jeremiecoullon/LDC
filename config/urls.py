@@ -18,9 +18,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
+from django.views.generic import RedirectView
+
+ADMIN_URL = 'https://docs.djangoproject.com/en/dev/ref/contrib/admin/'
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path('leadmin/', admin.site.urls),
+    path('admin/', RedirectView.as_view(url=ADMIN_URL)), # See http://www.holovaty.com/writing/admin-easter-egg/
     path('', include('music.urls')),
     path('api/', include('DjangoVerse.urls', namespace='DjangoVerse')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
