@@ -32,6 +32,24 @@ h1 {
 .navbar-links > a{
     font-size: 28px;
 }
+#navbarDropdown {
+    font-size: 28px;
+    color: rgba(0,0,0,.9);
+    position: relative;
+    bottom: 3px;
+    padding-right: 18px;
+}
+.navbar-nav .dropdown-menu {
+    background-color: #F8F8F8;
+}
+.dropdown-item{
+    font-size: 22px;
+}
+.dropdown-item:focus, .dropdown-item:hover {
+    background-color: #ECECEC;
+    color: #A94134; 
+}
+
 
 .DV_and_memes > a{
     font-size: 28px;
@@ -67,6 +85,10 @@ a:hover{
     .content-section {
         padding-top: 20px;
     }
+    #navbarDropdown {
+    position: static;
+    padding-right: 0px;
+}
 }
 
 @media (min-width: 768px){

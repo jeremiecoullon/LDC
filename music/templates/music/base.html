@@ -22,6 +22,20 @@
 <!-- nav-item nav-link active -->
     <div class="collapse navbar-collapse" id="navbarCollapse">
         <div class="navbar-nav navbar-links">
+
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  Music
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    {% for vol in volumes %}
+                        {% if vol.status == 'p' %}
+                        <a class="dropdown-item" href="{% url 'music:volume' vol.slug %}">{{ vol.name }}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+              </li>
+
         	<a href="{% url 'music:contact-gigs' %}" class="navbar-brand">Gigs & Contact</a>
             <a href="https://www.facebook.com/londondjangocollective" class="navbar-brand"><i class="fa fa-fw fa-facebook"></i></a>
             <a href="https://www.instagram.com/londondjangocollective/" class="navbar-brand"><i class="fa fa-fw fa-instagram"></i></a>
