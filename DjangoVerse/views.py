@@ -302,13 +302,15 @@ class D3View(APIView):
 			no_dup_gigged_with_list = list(gigged_with_list for gigged_with_list,_ in itertools.groupby(gigged_with_list))
 
 			# append list of unique 2-lists to link_list
+			filtered_ids = [elem['id'] for elem in linkplayerserializer.data]
 			for elem in no_dup_gigged_with_list:
+				# if either source or target is not in the list of filtered IDs, then move on to the next pair of nodes
+				if elem[0] not in filtered_ids or elem[1] not in filtered_ids:
+					continue
 				link_list.append({'source': elem[0], 'target': elem[1]})
 			# ================================================
 			# End of creating links between players
 			# ================================================
-
-			print(link_list)
 
 			for elem in linkplayerserializer.data:
 				for othermodel in other_model_list:
