@@ -215,7 +215,19 @@ def filter_nodes(request):
 	# filter each country
 	if list_country_query != []:
 		for country_q in list_country_query:
-			model_dict[country_q[:-8]]['qs'] = model_dict[country_q[:-8]]['qs'].filter(country=request.query_params[country_q])
+			
+			# for player_countries: treat it as a list so you query several countries at once
+			if country_q == 'player_country':
+				query_list_countries = request.query_params.getlist('player_country')
+				# have several countries in the filter
+				Q_query_filter = Q()
+				for ql in query_list_countries:
+					Q_query_filter |= Q(country=ql)
+				model_dict[country_q[:-8]]['qs'] = model_dict[country_q[:-8]]['qs'].filter(Q_query_filter)
+
+			# for everything else: only filter one option at a time
+			else:
+				model_dict[country_q[:-8]]['qs'] = model_dict[country_q[:-8]]['qs'].filter(country=request.query_params[country_q])
 	else:
 		pass
 
@@ -254,7 +266,18 @@ class SearchView(APIView):
 
 class D3View(APIView):
 	"""
-	API endpoint for D3: super bloated as at first it deals with a bunch of different models..
+	API endpoint for D3. 
+	
+	Query parameters:
+	----------------
+	'?player=on': queries players
+	'player_country=FR': filters for players based in France
+	'instrument=Guitar': filters for guitar players
+	'active=True': filters for active players
+	
+	=====================
+
+	Code is super bloated as at first it deals with a bunch of different models..
 	Note: the first few lines create the list of nodes, and the bit between 'Start' and 'End' creates links between players.
 	The rest of it deals with the other models (so doesn't get called if you don't inlude 'band', 'venue', or 'festival' in the query)
 	"""
@@ -343,8 +366,8 @@ def api_root(request, format=None):
 	return Response({
 		'D3_endpoint': reverse('DjangoVerse:D3-endpoint', request=request, format=format),
 		'players': reverse('DjangoVerse:player-list', request=request, format=format),
-		'bands': reverse('DjangoVerse:band-list', request=request, format=format),
-		'festivals': reverse('DjangoVerse:festival-list', request=request, format=format),
+		# 'bands': reverse('DjangoVerse:band-list', request=request, format=format),
+		# 'festivals': reverse('DjangoVerse:festival-list', request=request, format=format),
 		# 'venues': reverse('DjangoVerse:venue-list', request=request, format=format),
 		# 'albums': reverse('DjangoVerse:album-list', request=request, format=format),
 		'instruments': reverse('DjangoVerse:instrument-list', request=request, format=format),
