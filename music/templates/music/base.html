@@ -40,12 +40,16 @@
             <a href="https://www.facebook.com/londondjangocollective" class="navbar-brand"><i class="fa fa-fw fa-facebook"></i></a>
             <a href="https://www.instagram.com/londondjangocollective/" class="navbar-brand"><i class="fa fa-fw fa-instagram"></i></a>
             <a href="https://www.youtube.com/channel/UCcGuUAFEeboYs5ivUlrD5fA" class="navbar-brand navbar-last_social_media"><i class="fa fa-fw fa-youtube"></i></a>
-            
-        <div class="navbar-nav DV_and_memes">
-            <!-- <a href="{% url 'music:djangoverse-page' %}" class="navbar-brand ">DjangoVerse</a> -->
-            <a href="{% url 'music:memes-page' %}" class="navbar-brand ">GypsyJazzMemes</a>
-            
-        </div>
+
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              More
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{% url 'music:memes-page' %}">GypsyJazzMemes</a>
+                <!-- <a class="dropdown-item" href="{% url 'music:djangoverse-page' %}">DjangoVerse</a> -->
+            </div>
+        </li>
         </div>
 
         

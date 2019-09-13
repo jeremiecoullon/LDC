@@ -32,7 +32,7 @@ h1 {
 .navbar-links > a{
     font-size: 28px;
 }
-#navbarDropdown {
+#navbarDropdown, #navbarDropdown2 {
     font-size: 28px;
     color: rgba(0,0,0,.9);
     position: relative;
@@ -85,7 +85,7 @@ a:hover{
     .content-section {
         padding-top: 20px;
     }
-    #navbarDropdown {
+    #navbarDropdown, #navbarDropdown2 {
     position: static;
     padding-right: 0px;
 }
