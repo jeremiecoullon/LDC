@@ -217,7 +217,7 @@ def filter_nodes(request):
 		for country_q in list_country_query:
 			
 			# for player_countries: treat it as a list so you query several countries at once
-			if country_q == 'player_country':
+			if (country_q == 'player_country') and (hasattr(request.query_params, "getlist")):
 				query_list_countries = request.query_params.getlist('player_country')
 				# have several countries in the filter
 				Q_query_filter = Q()
