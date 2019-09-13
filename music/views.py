@@ -11,8 +11,10 @@ def index(request):
 def volume(request, slug):
 	le_volume = get_object_or_404(Volume, slug=slug)
 	all_volumes = Volume.objects.order_by('name')
+	presave_volume = all_volumes.filter(status='d').exclude(pre_order__exact="")
+
 	if le_volume.status == "p" or request.user.is_staff:
-		return render(request, 'music/volume_page.html', {'volume': le_volume, 'volumes': all_volumes})
+		return render(request, 'music/volume_page.html', {'volume': le_volume, 'volumes': all_volumes, 'presave_volume': presave_volume})
 	else:
 		raise Http404()
 

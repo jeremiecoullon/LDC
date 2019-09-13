@@ -1,5 +1,5 @@
 {% if vol.status == "d" %}
-<a {% if vol.status == "d" and vol.pre_order %}href="{{vol.pre_order}}"{%endif%} class='addgradientdraft'>
+<a {% if vol.status == "d" and vol.pre_order %}href="{{vol.pre_order}}" target="_blank"{%endif%} class='addgradientdraft'>
 {% else %}
 <a href="{% url 'music:volume' vol.slug %}" class='addgradientpublished'>
 {% endif %}

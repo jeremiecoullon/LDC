@@ -107,6 +107,13 @@
   </div>
   {% endif %}
 
+  {% if presave_volume %}
+  <div class="pre-save-link">
+    <hr class="pre-save-hr">
+    <p>Enjoyed this? Pre-save our next release here! <a target="_blank" href="{{ presave_volume.last.pre_order }}" class="download_button"><img class='download_image_logo' src="{% static 'music/images/Spotify_Icon_CMYK_Green.png' %}"></a></p>
+  </div>
+  {% endif %}
+
 </div>
 
 
