@@ -11,14 +11,14 @@ class PlayerAdmin(admin.ModelAdmin):
 	# fk_name = 'from_player'
 	filter_horizontal = ('gigged_with', 'instrument')
 
-@admin.register(Band)
-class BandAdmin(admin.ModelAdmin):
-	filter_horizontal = ('festival', )#'venue', 'album',)
-	exclude = ('thumbnail',)
+# @admin.register(Band)
+# class BandAdmin(admin.ModelAdmin):
+# 	filter_horizontal = ('festival', )#'venue', 'album',)
+# 	exclude = ('thumbnail',)
 
-@admin.register(Festival)
-class FestivalAdmin(admin.ModelAdmin):
-	exclude = ('thumbnail',)
+# @admin.register(Festival)
+# class FestivalAdmin(admin.ModelAdmin):
+# 	exclude = ('thumbnail',)
 
 # @admin.register(Venue)
 # class VenueAdmin(admin.ModelAdmin):

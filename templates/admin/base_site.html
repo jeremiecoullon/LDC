@@ -1,0 +1,10 @@
+{% extends "admin/base.html" %}
+{% load static from staticfiles%}
+{% block title %}{{ title }} | {{ site_title|default:_('Django site admin') }}{% endblock %}
+
+{% block branding %}
+<link href="{% static 'admin/css/my_admin_style.css' %}" rel="stylesheet">
+<h1 id="site-name"><a href="{% url 'admin:index' %}">(London) Django administration</a></h1>
+{% endblock %}
+
+{% block nav-global %}{% endblock %}
