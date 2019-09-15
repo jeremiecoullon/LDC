@@ -236,7 +236,11 @@ def filter_nodes(request):
 		for k, v in model_dict.items():
 			v['qs'] = v['qs'].filter(name__startswith=request.query_params['name'])
 	if 'instrument' in request.query_params.keys():
-		model_dict['player']['qs'] = model_dict['player']['qs'].filter(Q(instrument__name=request.query_params['instrument']))
+		Q_query_filter = Q()
+		for ql in request.query_params.getlist('instrument'):
+			Q_query_filter |= Q(instrument__name=ql)
+		model_dict['player']['qs'] = model_dict['player']['qs'].filter(Q_query_filter)
+		# model_dict['player']['qs'] = model_dict['player']['qs'].filter(Q(instrument__name=request.query_params['instrument']))
 	if 'active' in request.query_params.keys():
 		for k, v in model_dict.items():
 			v['qs'] = v['qs'].filter(isactive=request.query_params['active'])
