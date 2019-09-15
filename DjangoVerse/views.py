@@ -11,48 +11,17 @@ from django.db.models import Q
 from DjangoVerse.serializers import BandSerializer, PlayerSerializer, LinkPlayerSerializer, InstrumentSerializer, VenueSerializer, FestivalSerializer, AlbumSerializer, LinkBandSerializer
 from DjangoVerse.serializers import BandCountrySerializer, PlayerCountrySerializer, VenueCountrySerializer, FestivalCountrySerializer, AlbumCountrySerializer
 from DjangoVerse.models import Band, Player, Instrument, Venue, Festival, Album
-from .forms import FestivalForm, PlayerForm, BandForm
+from .forms import PlayerForm
 from country_list import countries_for_language
 import itertools
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
-
-
-# Djangoverse forms: festivals
-def post_festival(request):
-	if request.method == 'POST':
-		form = FestivalForm(request.POST, request.FILES)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.save()
-			return redirect('music:djangoverse-page')
-	else:
-		form = FestivalForm()
-	return render(request, 'DjangoVerse/festivalform.html', {'form': form})
-
-def edit_festival(request, pk):
-	festival = get_object_or_404(Festival, pk=pk)
-	if request.method == 'POST':
-		form = FestivalForm(request.POST, request.FILES, instance=festival)
-		if form.is_valid():
-			festival = form.save(commit=False)
-			festival.save()
-			return redirect('music:djangoverse-page')
-	else:
-		form = FestivalForm(instance=festival)
-	return render(request, 'Djangoverse/festivalform.html', {'form': form})
-
-def form_list_festival(request):
-	festivals = Festival.objects.all()
-	return render(request, 'DjangoVerse/festivallist.html', {'festivals': festivals})
-
 
 # Djangoverse forms: players
 def post_player(request):
 	if request.method == 'POST':
 		form = PlayerForm(request.POST, request.FILES)
 		if form.is_valid():
-			post = form.save(commit=False)
-			post.save()
+			post = form.save(commit=True)
 			return redirect('music:djangoverse-page')
 	else:
 		form = PlayerForm()
@@ -63,8 +32,7 @@ def edit_player(request, pk):
 	if request.method == 'POST':
 		form = PlayerForm(request.POST, request.FILES, instance=player)
 		if form.is_valid():
-			player = form.save(commit=False)
-			player.save()
+			player = form.save(commit=True)
 			return redirect('music:djangoverse-page')
 	else:
 		form = PlayerForm(instance=player)
@@ -75,37 +43,10 @@ def form_list_player(request):
 	return render(request, 'DjangoVerse/playerlist.html', {'players': players})
 
 
-# Djangoverse forms: Bands
-def post_band(request):
-	if request.method == 'POST':
-		form = BandForm(request.POST, request.FILES)
-		if form.is_valid():
-			post = form.save(commit=False)
-			post.save()
-			return redirect('music:djangoverse-page')
-	else:
-		form = BandForm()
-	return render(request, 'DjangoVerse/bandform.html', {'form': form})
 
-def edit_band(request, pk):
-	band = get_object_or_404(Band, pk=pk)
-	if request.method == 'POST':
-		form = BandForm(request.POST, request.FILES, instance=band)
-		if form.is_valid():
-			band = form.save(commit=False)
-			band.save()
-			return redirect('music:djangoverse-page')
-	else:
-		form = BandForm(instance=band)
-	return render(request, 'Djangoverse/bandform.html', {'form': form})
-
-def form_list_band(request):
-	bands = Band.objects.all()
-	return render(request, 'DjangoVerse/bandlist.html', {'bands': bands})
-
-class BandViewSet(viewsets.ModelViewSet):
-	queryset = Band.objects.all()
-	serializer_class = BandSerializer
+# class BandViewSet(viewsets.ModelViewSet):
+# 	queryset = Band.objects.all()
+# 	serializer_class = BandSerializer
 
 class PlayerViewSet(viewsets.ModelViewSet):
 	queryset = Player.objects.all()
@@ -127,15 +68,6 @@ class FestivalViewSet(viewsets.ModelViewSet):
 # 	queryset = Album.objects.all()
 # 	serializer_class = AlbumSerializer
 
-class SearchPlayer(generics.ListAPIView):
-	serializer_class = PlayerSerializer
-
-	def get_queryset(self):
-		queryset = Player.objects.all()
-		name_query = self.request.query_params.get("name", None)
-		if name_query is not None:
-			queryset = queryset.filter(name__startswith=name_query)
-		return queryset
 
 
 	
@@ -235,34 +167,18 @@ def filter_nodes(request):
 	if 'name' in request.query_params.keys():
 		for k, v in model_dict.items():
 			v['qs'] = v['qs'].filter(name__startswith=request.query_params['name'])
+	
 	if 'instrument' in request.query_params.keys():
+		# build the query filter so that you can query several instruments at once
 		Q_query_filter = Q()
 		for ql in request.query_params.getlist('instrument'):
 			Q_query_filter |= Q(instrument__name=ql)
 		model_dict['player']['qs'] = model_dict['player']['qs'].filter(Q_query_filter)
-		# model_dict['player']['qs'] = model_dict['player']['qs'].filter(Q(instrument__name=request.query_params['instrument']))
+
 	if 'active' in request.query_params.keys():
 		for k, v in model_dict.items():
 			v['qs'] = v['qs'].filter(isactive=request.query_params['active'])
 	return model_dict
-
-class SearchView(APIView):
-	"""
-	Toggle nodes on and off
-	"""
-
-	def get(self, request, format=None):
-		model_dict = filter_nodes(request)
-
-		for k, v in model_dict.items():
-			v['ser'] = v['SerClass'](v['qs'], many=True, context={'request': request})
-		return_list = []
-
-		for vals in model_dict.values():
-			for elem in vals['ser'].data:
-				return_list.append(elem)
-
-		return Response(return_list)
 
 
 
