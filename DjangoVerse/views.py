@@ -18,9 +18,6 @@ import itertools
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
 
 
-def leDjangoVerse(request):
-	return render(request, "DjangoVerse/DV_static.html")
-
 # Djangoverse forms: players
 def post_player(request):
 	if request.method == 'POST':

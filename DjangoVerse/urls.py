@@ -43,8 +43,6 @@ urlpatterns = [
 	path("forms/instrument/add", views.post_instrument, name='add-instrument'),
 	path("forms/instrument/<str:pk>/edit", views.edit_instrument, name='edit-instrument'),
 	path("forms/instrument/list", views.list_instruments, name='list-instruments'),
-
-	path("DV", views.leDjangoVerse, name='le-DjangoVerse'),
 	
 ]
 
