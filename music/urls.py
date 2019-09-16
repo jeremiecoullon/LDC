@@ -8,7 +8,7 @@ urlpatterns = [
     path("", views.index, name='index'),
     path("volumes/<str:slug>", views.volume, name='volume'),
     path("gigs_contact", views.contact_gigs, name='contact-gigs'),
-    path('djangoverse', views.DV, name='djangoverse-page'),
+    # path('djangoverse', views.DV, name='djangoverse-page'),
     path('gypsyjazzmemes', views.memes, name='memes-page'),
-    path('djangoverse_fullscreen', views.DV_fullscreen, name='djangoverse-fullscreen'),
+    path('djangoverse', views.DV_fullscreen, name='djangoverse-fullscreen'),
 ]
