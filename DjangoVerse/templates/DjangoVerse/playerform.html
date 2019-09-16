@@ -1,21 +1,67 @@
-{% extends 'DjangoVerse/baseformedit.html' %}
+{% extends 'music/base.html' %}
 {% load static from staticfiles %}
 {% load crispy_forms_tags %}
 
+{% block header %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-{% block title %}
-<title>Edit Players</title>
+    <meta name="description" content="Jazz musicians in London inspired by the music of Django Reinhardt">
+	<meta name="keywords" content="London Django Collective, Django Reinhardt, London, Gypsy Jazz, Jazz Manouche, Jazz, music, UK">
+	<meta name="author" content="">
+	<meta property="og:image" content=""/>
+	<meta property="og:title" content="London Django Collective" />
+	<meta property="og:description" content="Jazz musicians in London inspired by the music of Django Reinhardt" />
+	<meta property="og:url" content="https://londondjangocollective.com" />
+
+	<!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+	<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+	<link rel="stylesheet" type="text/css" href="{% static 'music/css/MyFontsWebfontsKit.css' %}">
+	<link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet"> 
+	
+
+
+    <!-- forms for Admin's filter_horizontal widget -->
+    <script type="text/javascript" src="{% static 'DjangoVerse/js/jsil8n.js' %}"></script>
+
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/css/widgets.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/css/base.css' %}"/>
+	<link rel="stylesheet" type="text/css" href="{% static 'admin/css/forms.css' %}"/>
+	
+	<script type="text/javascript" src="{% static 'admin/js/core.js' %}"></script>
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="{% static 'admin/js/jquery.init.js' %}"></script>
+	<script type="text/javascript" src="{% static 'admin/js/SelectFilter2.js' %}"></script>
+	<script type="text/javascript" src="{% static 'admin/js/SelectBox.js' %}"></script>
+	<!-- forms for filter_horizontal -->
+
+
+	<link href="{% static 'music/css/LDC_base.css' %}" rel="stylesheet">
+    <link href="{% static 'DjangoVerse/css/forms.css' %}" rel="stylesheet">
+
+
+	<title>Edit Players</title>
+</head>
 {% endblock %}
 
 
-{% block bodyandform %}
-<h1>Add/Edit Player</h1>	
+{% block content %}
+<body>
 
+<div class="container">
+	<h1>Add/Edit Player</h1>
 
+	<div class='row'>
+		<div class='col-md-10 offset-md-1'>
+			<a href="{% url 'DjangoVerse:form-list-player' %}" class='btn btn-secondary'>Back to all players</a>	
+		</div>
+	</div>
 	<div class="row">
 
-		<!-- <fieldset> -->
-			<div class='col-md-10'>
+			<div class='col-md-10 offset-md-1 player_form'>
 				<form method='POST' class='post-form'>
 					{% csrf_token %}
 					<div class='form-row'>
@@ -28,7 +74,7 @@
 					</div>
 					<div class='form-row'>
 						<div class='form-group col-md-10 mb-0'>
-							{{ form.instrument }}
+							{{ form.instrument|as_crispy_field }}
 						</div>
 					</div>
 
@@ -54,25 +100,28 @@
 							{{ form.isactive|as_crispy_field }}
 						</div>
 					</div>
-					<button type='submit' class='save btn btn-default'>Save</button>
+
+					<div class='row'>
+						<div class='col-md-4'>
+							{% if player %}
+								<button href="{% url 'DjangoVerse:delete-player' player.id %}" class='btn btn-danger'>Delete</button>
+							{% endif %}		
+						</div>
+						<div class='col-md-7 offset-md-1'>
+							<button type='submit' class='btn btn-success other_save' name='btn-save-and-continue'>Save and continue editing</button>
+							<button type='submit' class='btn btn-success other_save' name='btn-save-and-add'>Save and add another</button>
+							<button type='submit' class='btn btn-success' name='btn-save'>Save</button>
+						</div>
+					</div>
+					
+					
 				</form>
 			</div>
-		<!-- </fieldset> -->
 	</div>
 
-	<!-- <script type="text/javascript">
-		function addEvent(to, type, fn){
-		    if(document.addEventListener){
-		        to.addEventListener(type, fn, false);
-		    } else if(document.attachEvent){
-		        to.attachEvent('on'+type, fn);
-		    } else {
-		        to['on'+type] = fn;
-		    }  
-		};
-	    addEvent(window, "load", function(e) { SelectFilter.init("id_gigged_with", "gigged_with", 0, "{% static 'admin/' %}"); });
 
-	    addEvent(window, "load", function(e) { SelectFilter.init("id_instrument", "instrument", 0, "{% static 'admin/' %}"); });
-	</script> -->
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
 {% endblock %}
-

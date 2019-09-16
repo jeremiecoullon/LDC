@@ -37,6 +37,7 @@ urlpatterns = [
 	path("forms/player/add", views.post_player, name='post-player'),
 	path("forms/player/<str:pk>/edit", views.edit_player, name='edit-player'),
 	path("forms/player/list", views.form_list_player, name='form-list-player'),
+	path("forms/player/<str:pk>/delete", views.delete_player, name='delete-player'),
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

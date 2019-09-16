@@ -1,9 +1,57 @@
 body {
 	background-color: #F8F8F8;
 }
-form {
+form, button, .form-group {
 	font-family: 'Lato', sans-serif;
 }
-.list-festivals{
+/*{
+	font-family: 'Lato', sans-serif;
+}*/
+a.btn-secondary, .btn-success, .btn-danger {
+	color: #fff;
+	font-family: 'Lato', sans-serif;
+}
+.list-players{
 	font-family: 'Lato', sans-serif;	
+	margin-top: 40px;
+}
+.player_form {
+	background-color: white;
+	padding: 20px;
+	margin-bottom: 40px;
+	margin-top: 20px;
+	border-radius: 15px;
+}
+.other_save{
+	background-color: #28a745a6;
+	border-color: #28a745a6;
+}
+.other_save:hover {
+	background-color: #28a745e3;
+	border-color: #28a745e3;
+}
+.confirm_delete{
+	text-transform: none;
+	font-size: 30px;
+	text-align: left;
+}
+.delete_container{
+	margin-top: 50px;
+	padding: 30px;
+	background-color: white;
+	border-radius: 5px;
+}
+.cancel_delete{
+	margin-left: 15px;
+}
+.player_list_hr {
+	width: 40%;
+	margin-left: 4%;
+
+}
+.player_list_element > p{
+	font-size: 15px;
+}
+.player_list_element > p > a{
+	font-size: 12px;
 }

@@ -36,12 +36,17 @@
 <div class="container">
 	<h1>All Players</h1>	
 	
-
-	<div class="row list-festivals">
+	<div class='row'>
+		<a class="btn btn-secondary" href="{% url 'DjangoVerse:post-player' %}" role="button">Add Player</a>
+	</div>
+	<div class="row list-players">
 		<div class='col-md-6'>
 			<ol>
 			{% for player in players %}
-				<li><a href="{% url 'DjangoVerse:edit-player' player.id %}">{{ player.name }} </a> </li>
+				<li class='player_list_element'>
+					<p>{{ player.name }}: <a href="{% url 'DjangoVerse:edit-player' player.id %}" class='btn btn-secondary'>Edit</a> <a href="{% url 'DjangoVerse:delete-player' player.id %}" class='btn btn-danger'>Delete</a></p>
+				</li>
+				<hr align='left' class='player_list_hr'>
 			{% endfor %}
 			</ol>
 		</form>

@@ -11,6 +11,7 @@ from django.db.models import Q
 from DjangoVerse.serializers import BandSerializer, PlayerSerializer, LinkPlayerSerializer, InstrumentSerializer, VenueSerializer, FestivalSerializer, AlbumSerializer, LinkBandSerializer
 from DjangoVerse.serializers import BandCountrySerializer, PlayerCountrySerializer, VenueCountrySerializer, FestivalCountrySerializer, AlbumCountrySerializer
 from DjangoVerse.models import Band, Player, Instrument, Venue, Festival, Album
+from music.models import Volume
 from .forms import PlayerForm
 from country_list import countries_for_language
 import itertools
@@ -22,10 +23,12 @@ def post_player(request):
 		form = PlayerForm(request.POST, request.FILES)
 		if form.is_valid():
 			post = form.save(commit=True)
-			return redirect('music:djangoverse-page')
+			return redirect("DjangoVerse:form-list-player")
 	else:
 		form = PlayerForm()
-	return render(request, 'DjangoVerse/playerform.html', {'form': form})
+	volumes = Volume.objects.order_by('name')
+	return render(request, 'DjangoVerse/playerform.html', {'volumes': volumes, 'form': form})
+	
 
 def edit_player(request, pk):
 	player = get_object_or_404(Player, pk=pk)
@@ -33,16 +36,29 @@ def edit_player(request, pk):
 		form = PlayerForm(request.POST, request.FILES, instance=player)
 		if form.is_valid():
 			player = form.save(commit=True)
-			return redirect('music:djangoverse-page')
+			
+			# 3 'save' buttons in the form:
+			if 'btn-save' in request.POST:
+				return redirect("DjangoVerse:form-list-player")
+			elif 'btn-save-and-continue' in request.POST:
+				return redirect("DjangoVerse:edit-player", pk=pk)
+			elif 'btn-save-and-add' in request.POST:
+				return redirect("DjangoVerse:post-player")
 	else:
 		form = PlayerForm(instance=player)
-	return render(request, 'Djangoverse/playerform.html', {'form': form})
+	return render(request, 'Djangoverse/playerform.html', {'player': player, 'form': form})
 
 def form_list_player(request):
-	players = Player.objects.all()
+	players = Player.objects.order_by('name')
 	return render(request, 'DjangoVerse/playerlist.html', {'players': players})
 
 
+def delete_player(request, pk):
+	player = get_object_or_404(Player, pk=pk)
+	if request.method == 'POST':
+		player.delete()
+		return redirect("DjangoVerse:form-list-player")
+	return render(request, 'DjangoVerse/delete_page.html', {'player': player})
 
 # class BandViewSet(viewsets.ModelViewSet):
 # 	queryset = Band.objects.all()
