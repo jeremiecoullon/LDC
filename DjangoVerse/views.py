@@ -12,10 +12,14 @@ from DjangoVerse.serializers import BandSerializer, PlayerSerializer, LinkPlayer
 from DjangoVerse.serializers import BandCountrySerializer, PlayerCountrySerializer, VenueCountrySerializer, FestivalCountrySerializer, AlbumCountrySerializer
 from DjangoVerse.models import Band, Player, Instrument, Venue, Festival, Album
 from music.models import Volume
-from .forms import PlayerForm
+from .forms import PlayerForm, InstrumentForm
 from country_list import countries_for_language
 import itertools
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
+
+
+def leDjangoVerse(request):
+	return render(request, "DjangoVerse/DV_static.html")
 
 # Djangoverse forms: players
 def post_player(request):
@@ -23,7 +27,7 @@ def post_player(request):
 		form = PlayerForm(request.POST, request.FILES)
 		if form.is_valid():
 			post = form.save(commit=True)
-			return redirect("DjangoVerse:form-list-player")
+			return redirect("DjangoVerse:list-player")
 	else:
 		form = PlayerForm()
 	volumes = Volume.objects.order_by('name')
@@ -39,11 +43,11 @@ def edit_player(request, pk):
 			
 			# 3 'save' buttons in the form:
 			if 'btn-save' in request.POST:
-				return redirect("DjangoVerse:form-list-player")
+				return redirect("DjangoVerse:list-player")
 			elif 'btn-save-and-continue' in request.POST:
 				return redirect("DjangoVerse:edit-player", pk=pk)
 			elif 'btn-save-and-add' in request.POST:
-				return redirect("DjangoVerse:post-player")
+				return redirect("DjangoVerse:add-player")
 	else:
 		form = PlayerForm(instance=player)
 	return render(request, 'DjangoVerse/playerform.html', {'player': player, 'form': form})
@@ -57,8 +61,44 @@ def delete_player(request, pk):
 	player = get_object_or_404(Player, pk=pk)
 	if request.method == 'POST':
 		player.delete()
-		return redirect("DjangoVerse:form-list-player")
+		return redirect("DjangoVerse:list-player")
 	return render(request, 'DjangoVerse/delete_page.html', {'player': player})
+
+
+# =============
+
+def post_instrument(request):
+	if request.method == 'POST':
+		form = InstrumentForm(request.POST)
+		if form.is_valid():
+			post = form.save(commit=True)
+			return redirect("DjangoVerse:list-instruments")
+	else:
+		form = InstrumentForm()
+	volumes = Volume.objects.order_by('name')
+	return render(request, 'DjangoVerse/instrumentform.html', {'volumes': volumes, 'form': form})
+
+def edit_instrument(request, pk):
+	instrument = get_object_or_404(Instrument, pk=pk)
+	if request.method == 'POST':
+		form = InstrumentForm(request.POST, instance=instrument)
+		if form.is_valid():
+			instrument = form.save(commit=True)
+			
+			# 3 'save' buttons in the form:
+			if 'btn-save' in request.POST:
+				return redirect("DjangoVerse:list-instruments")
+			elif 'btn-save-and-continue' in request.POST:
+				return redirect("DjangoVerse:edit-instrument", pk=pk)
+			elif 'btn-save-and-add' in request.POST:
+				return redirect("DjangoVerse:add-instrument")
+	else:
+		form = InstrumentForm(instance=instrument)
+	return render(request, 'DjangoVerse/instrumentform.html', {'instrument': instrument, 'form': form})
+
+def list_instruments(request):
+	instruments = Instrument.objects.order_by('name')
+	return render(request, 'DjangoVerse/instrumentlist.html', {'instruments': instruments})
 
 # class BandViewSet(viewsets.ModelViewSet):
 # 	queryset = Band.objects.all()

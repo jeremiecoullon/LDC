@@ -34,10 +34,18 @@ urlpatterns = [
 	path('', views.api_root),
 
 	# forms
-	path("forms/player/add", views.post_player, name='post-player'),
+	path("forms/player/add", views.post_player, name='add-player'),
 	path("forms/player/<str:pk>/edit", views.edit_player, name='edit-player'),
-	path("forms/player/list", views.form_list_player, name='form-list-player'),
+	path("forms/player/list", views.form_list_player, name='list-player'),
 	path("forms/player/<str:pk>/delete", views.delete_player, name='delete-player'),
+
+	# forms
+	path("forms/instrument/add", views.post_instrument, name='add-instrument'),
+	path("forms/instrument/<str:pk>/edit", views.edit_instrument, name='edit-instrument'),
+	path("forms/instrument/list", views.list_instruments, name='list-instruments'),
+
+	path("DV", views.leDjangoVerse, name='le-DjangoVerse'),
+	
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)

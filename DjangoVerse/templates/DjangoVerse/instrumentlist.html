@@ -25,7 +25,7 @@
     <link href="{% static 'DjangoVerse/css/forms.css' %}" rel="stylesheet">
 
 
-	<title>All Players</title>
+	<title>All Instruments</title>
 </head>
 
 {% endblock %}
@@ -34,24 +34,25 @@
 <body>
 
 <div class="container">
-	<h1>All Players</h1>	
-	
+	<h1>All Instruments</h1>
+
 	<div class='row model_list_buttons'>
 		<div class='col-md-3'>
-			<a class="btn btn-secondary" href="{% url 'DjangoVerse:add-player' %}" role="button">Add Player</a>	
+			<a class="btn btn-secondary" href="{% url 'DjangoVerse:add-instrument' %}" role="button">Add Instrument</a>
 		</div>
 		<div class='col-md-4 offset-md-5'>
-			<a class="btn btn-secondary button_other_model" href="{% url 'DjangoVerse:add-instrument' %}" role="button">Add Instrument</a>	
-			<a class="btn btn-secondary button_other_model" href="{% url 'DjangoVerse:list-instruments' %}" role="button">Edit Instrument</a>	
+			<a class="btn btn-secondary button_other_model" href="{% url 'DjangoVerse:add-player' %}" role="button">Add Player</a>	
+			<a class="btn btn-secondary button_other_model" href="{% url 'DjangoVerse:list-player' %}" role="button">Edit Player</a>	
 		</div>
 		<hr class='model_header_hr'>
 	</div>
+
 	<div class="row list-players">
 		<div class='col-md-6'>
 			<ol>
-			{% for player in players %}
+			{% for instrument in instruments %}
 				<li class='player_list_element'>
-					<p><a href="{% url 'DjangoVerse:edit-player' player.id %}" >{{ player.name }}</a></p>
+					<p><a href="{% url 'DjangoVerse:edit-instrument' instrument.id %}" >{{ instrument.name }}</a></p>
 				</li>
 				<hr align='left' class='player_list_hr'>
 			{% endfor %}

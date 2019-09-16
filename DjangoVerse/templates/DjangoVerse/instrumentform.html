@@ -43,7 +43,7 @@
     <link href="{% static 'DjangoVerse/css/forms.css' %}" rel="stylesheet">
 
 
-	<title>Edit/Add Players</title>
+	<title>Edit/Add Instrument</title>
 </head>
 {% endblock %}
 
@@ -52,11 +52,11 @@
 <body>
 
 <div class="container">
-	<h1>Add/Edit Player</h1>
+	<h1>Add/Edit Instrument</h1>
 
 	<div class='row'>
 		<div class='col-md-10 offset-md-1'>
-			<a href="{% url 'DjangoVerse:list-player' %}" class='btn btn-secondary'>Back to all players</a>	
+			<a href="{% url 'DjangoVerse:list-instruments' %}" class='btn btn-secondary'>Back to all instruments</a>	
 		</div>
 	</div>
 	<div class="row">
@@ -68,53 +68,15 @@
 						<div class='form-group col-md-6 mb-0'>
 							{{ form.name|as_crispy_field }}
 						</div>
-						<div class='form-group col-md-10 mb-0'>
-							{{ form.country|as_crispy_field }}
-						</div>
-					</div>
-					<div class='form-row'>
-						<div class='form-group col-md-10 mb-0'>
-							{{ form.instrument|as_crispy_field }}
-						</div>
-					</div>
-
-					<div class='form-row'>
-						<div class='form-group col-md-6'>
-							{{ form.gigged_with|as_crispy_field }}
-						</div>
-					</div>
-
-					<div class='form-row'>
-						<div class='form-group col-md-12'>
-							{{ form.description|as_crispy_field }}
-						</div>	
-					</div>
-					<div class='form-row'>
-						<div class='form-group col-md-4'>
-							{{ form.external_URL|as_crispy_field }}
-						</div>
-						<div class='form-group col-md-4'>
-							{{ form.image|as_crispy_field }}
-						</div>
-						<div class='form-group col-md-4'>
-							{{ form.isactive|as_crispy_field }}
-						</div>
 					</div>
 
 					<div class='row'>
-						<div class='col-md-4'>
-							{% if player %}
-								<a href="{% url 'DjangoVerse:delete-player' player.id %}" class='btn btn-danger'>Delete</a>
-							{% endif %}		
-						</div>
-						<div class='col-md-7 offset-md-1'>
+						<div class='col-md-7 offset-md-5'>
 							<button type='submit' class='btn btn-success other_save' name='btn-save-and-continue'>Save and continue editing</button>
 							<button type='submit' class='btn btn-success other_save' name='btn-save-and-add'>Save and add another</button>
 							<button type='submit' class='btn btn-success' name='btn-save'>Save</button>
 						</div>
 					</div>
-					
-					
 				</form>
 			</div>
 	</div>

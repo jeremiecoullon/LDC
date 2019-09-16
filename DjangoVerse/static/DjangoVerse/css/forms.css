@@ -11,6 +11,9 @@ a.btn-secondary, .btn-success, .btn-danger {
 	color: #fff;
 	font-family: 'Lato', sans-serif;
 }
+a.btn-danger {
+	color: #fff;
+}
 .list-players{
 	font-family: 'Lato', sans-serif;	
 	margin-top: 40px;
@@ -46,12 +49,20 @@ a.btn-secondary, .btn-success, .btn-danger {
 }
 .player_list_hr {
 	width: 40%;
-	margin-left: 4%;
+	margin: 1px 4%;
 
 }
-.player_list_element > p{
-	font-size: 15px;
-}
 .player_list_element > p > a{
-	font-size: 12px;
+	font-size: 16px;
+}
+.button_other_model{
+	margin-left: 10px;
+}
+.model_header_hr{
+	margin: 1px 4%;
+	width: 90%;
+	margin-top: 40px;
+}
+.model_list_buttons{
+	margin-top: 40px;
 }
