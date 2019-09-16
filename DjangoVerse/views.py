@@ -46,7 +46,7 @@ def edit_player(request, pk):
 				return redirect("DjangoVerse:post-player")
 	else:
 		form = PlayerForm(instance=player)
-	return render(request, 'Djangoverse/playerform.html', {'player': player, 'form': form})
+	return render(request, 'DjangoVerse/playerform.html', {'player': player, 'form': form})
 
 def form_list_player(request):
 	players = Player.objects.order_by('name')
