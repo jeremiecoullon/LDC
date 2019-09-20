@@ -26,7 +26,7 @@ class PlayerSerializer(serializers.ModelSerializer):
 
 	class Meta:
 		model = Player
-		fields = base_fields + ('instrument', 'band', 'isactive', 'festival', 'venue', 'album', 'gigged_with')
+		fields = base_fields + ('instrument', 'band', 'isactive', 'festival', 'venue', 'album', 'gigged_with', 'video_embed')
 
 
 

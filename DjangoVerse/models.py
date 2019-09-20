@@ -4,6 +4,7 @@ from io import BytesIO
 from PIL import Image
 from django.core.files import File
 from country_list import countries_for_language
+from music.util import create_youtube_embed
 
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
 
@@ -131,8 +132,10 @@ class Player(BaseInfo):
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
 	album = models.ManyToManyField(Album, blank=True, related_name='playersplayed')
 	gigged_with = models.ManyToManyField('self', blank=True)
+	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to the youtube video")
 
 	def save(self, *args, **kwargs):
+		self.video_embed = create_youtube_embed(url=self.video_embed)
 		if self.image:
 			# call the compress function
 			new_image = compress(self.image)
