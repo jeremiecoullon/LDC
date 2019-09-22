@@ -112,9 +112,10 @@
 								<a href="{% url 'DjangoVerse:delete-player' player.id %}" class='btn btn-danger'>Delete</a>
 							{% endif %}		
 						</div>
-						<div class='col-md-7 offset-md-1'>
+						<div class='col-md-8'>
+							<button type='submit' class='btn btn-success other_save' name='btn-save-and-DjangoVerse'>Save and back to DjangoVerse</button>
 							<button type='submit' class='btn btn-success other_save' name='btn-save-and-continue'>Save and continue editing</button>
-							<button type='submit' class='btn btn-success other_save' name='btn-save-and-add'>Save and add another</button>
+							<!-- <button type='submit' class='btn btn-success other_save' name='btn-save-and-add'>Save and add another</button> -->
 							<button type='submit' class='btn btn-success' name='btn-save'>Save</button>
 						</div>
 					</div>

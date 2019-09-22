@@ -45,6 +45,8 @@ def edit_player(request, pk):
 				return redirect("DjangoVerse:edit-player", pk=pk)
 			elif 'btn-save-and-add' in request.POST:
 				return redirect("DjangoVerse:add-player")
+			elif 'btn-save-and-DjangoVerse' in request.POST:
+				return redirect("music:djangoverse-page")	
 	else:
 		form = PlayerForm(instance=player)
 	return render(request, 'DjangoVerse/playerform.html', {'player': player, 'form': form})
