@@ -24,7 +24,13 @@ def post_player(request):
 		form = PlayerForm(request.POST, request.FILES)
 		if form.is_valid():
 			post = form.save(commit=True)
-			return redirect("DjangoVerse:list-player")
+			# 3 'save' buttons in the form:
+			if 'btn-save' in request.POST:
+				return redirect("DjangoVerse:list-player")
+			elif 'btn-save-and-continue' in request.POST:
+				return redirect("DjangoVerse:edit-player", pk=post.pk)
+			elif 'btn-save-and-DjangoVerse' in request.POST:
+				return redirect("music:djangoverse-page")	
 	else:
 		form = PlayerForm()
 	volumes = Volume.objects.order_by('name')
@@ -43,8 +49,8 @@ def edit_player(request, pk):
 				return redirect("DjangoVerse:list-player")
 			elif 'btn-save-and-continue' in request.POST:
 				return redirect("DjangoVerse:edit-player", pk=pk)
-			elif 'btn-save-and-add' in request.POST:
-				return redirect("DjangoVerse:add-player")
+			# elif 'btn-save-and-add' in request.POST:
+			# 	return redirect("DjangoVerse:add-player")
 			elif 'btn-save-and-DjangoVerse' in request.POST:
 				return redirect("music:djangoverse-page")	
 	else:

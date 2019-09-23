@@ -10,5 +10,4 @@ urlpatterns = [
     path("gigs_contact", views.contact_gigs, name='contact-gigs'),
     path('djangoverse', views.DV_fullscreen, name='djangoverse-page'),
     path('gypsyjazzmemes', views.memes, name='memes-page'),
-    path('djangoverse', views.DV_fullscreen, name='djangoverse-fullscreen'),
 ]
