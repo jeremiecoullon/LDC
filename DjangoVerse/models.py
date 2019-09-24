@@ -147,7 +147,7 @@ class Band(BaseInfo):
 
 class Player(BaseInfo):
 	instrument = models.ManyToManyField(Instrument)
-	isactive = models.BooleanField(default=True, help_text="Whether or not their active on the Gypsy Jazz scene today")
+	isactive = models.BooleanField(default=True, help_text="Whether or not they're active on the Gypsy Jazz scene today")
 	# not required
 	image = models.ImageField(upload_to=player_img_path, storage=OverwriteStorage(), null=True, blank=True, help_text="If the width is not 1.5 times the height, then the image will be cropped to make it so.")
 	thumbnail = models.ImageField(upload_to=player_img_path, null=True, blank=True)
@@ -156,7 +156,7 @@ class Player(BaseInfo):
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
 	album = models.ManyToManyField(Album, blank=True, related_name='playersplayed')
 	gigged_with = models.ManyToManyField('self', blank=True, help_text="Choose people this player has gigged with (ie: done a concert with). Note that jams don't count!")
-	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to the youtube video")
+	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to a youtube video of this player's music")
 
 	def save(self, *args, **kwargs):
 		self.video_embed = create_youtube_embed(url=self.video_embed)
