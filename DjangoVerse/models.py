@@ -147,15 +147,15 @@ class Band(BaseInfo):
 
 class Player(BaseInfo):
 	instrument = models.ManyToManyField(Instrument)
-	isactive = models.BooleanField(default=True)
+	isactive = models.BooleanField(default=True, help_text="Whether or not their active on the Gypsy Jazz scene today")
 	# not required
-	image = models.ImageField(upload_to=player_img_path, storage=OverwriteStorage(), null=True, blank=True)
+	image = models.ImageField(upload_to=player_img_path, storage=OverwriteStorage(), null=True, blank=True, help_text="If the width is not 1.5 times the height, then the image will be cropped to make it so.")
 	thumbnail = models.ImageField(upload_to=player_img_path, null=True, blank=True)
 	band = models.ManyToManyField(Band, blank=True, related_name='members')
 	festival = models.ManyToManyField(Festival, blank=True, related_name='playersplayed')
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
 	album = models.ManyToManyField(Album, blank=True, related_name='playersplayed')
-	gigged_with = models.ManyToManyField('self', blank=True)
+	gigged_with = models.ManyToManyField('self', blank=True, help_text="Choose people this player has gigged with (ie: done a concert with). Note that jams don't count!")
 	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to the youtube video")
 
 	def save(self, *args, **kwargs):

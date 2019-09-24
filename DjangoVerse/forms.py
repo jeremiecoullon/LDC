@@ -10,6 +10,9 @@ class InstrumentForm(ModelForm):
 		fields = ('name',)
 
 class PlayerForm(ModelForm):
+	def __init__(self, *args, **kwargs):
+		super(PlayerForm, self).__init__(*args, **kwargs)
+		self.fields['external_URL'].help_text = "This can be a link to player's website, facebook, or whatever. This will be linked in the player's name in their information box."
 
 	class Meta:
 		model = Player
