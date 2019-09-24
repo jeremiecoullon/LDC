@@ -150,7 +150,7 @@ class Player(BaseInfo):
 	isactive = models.BooleanField(default=True)
 	# not required
 	image = models.ImageField(upload_to=player_img_path, storage=OverwriteStorage(), null=True, blank=True)
-	thumbnail = models.ImageField(upload_to=player_img_path, storage=OverwriteStorage(), null=True, blank=True)
+	thumbnail = models.ImageField(upload_to=player_img_path, null=True, blank=True)
 	band = models.ManyToManyField(Band, blank=True, related_name='members')
 	festival = models.ManyToManyField(Festival, blank=True, related_name='playersplayed')
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
