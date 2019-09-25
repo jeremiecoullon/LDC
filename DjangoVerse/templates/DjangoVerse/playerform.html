@@ -73,10 +73,12 @@
 						</div>
 					</div>
 					<div class='form-row'>
-						<div class='form-group col-md-5'>
+						<div class='form-group col-md-12'>
 							{{ form.instrument|as_crispy_field }}
 						</div>
-						<div class='form-group col-md-5 offset-md-1'>
+					</div>
+					<div class='form-row'>
+						<div class='form-group col-md-12'>
 							{{ form.gigged_with|as_crispy_field }}
 						</div>
 					</div>
@@ -124,7 +126,28 @@
 
 
 </div>
+
+
+
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<script type="text/javascript">
+	// For some reason, adding the 'stacked' class after a delay of 0s works. 
+	// If you don't do this, the last div doesn't get selected.
+	// This is probably because the script runs before that div is built
+	function addStackedMobile(){
+		var window_width = $(window).width();
+		if (window_width < 1200){
+			setTimeout(
+				() => $('#div_id_instrument').children('div').children('div').addClass("stacked"),
+				 0)
+			setTimeout(
+				() => $('#div_id_gigged_with').children('div').children('div').addClass("stacked"),
+				 0)
+		}}
+	addStackedMobile();
+</script>
+
 </body>
 {% endblock %}
