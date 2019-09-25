@@ -52,7 +52,15 @@
 			<ol>
 			{% for player in players %}
 				<li class='player_list_element'>
-					<p><a href="{% url 'DjangoVerse:edit-player' player.id %}" >{{ player.name }}</a></p>
+					<div class='row'>
+						<div class='col-6 col-xs-6 col-md-6'>
+						<p><a href="{% url 'DjangoVerse:edit-player' player.id %}" class="player_list_element_name">{{ player.name }}</a></p>	
+						</div>
+						<div class='col-3 col-xs-3 col-md-3'>
+							 <img src="{% if player.image %}{{ player.image.url }}{% endif %}" class="player_list_element_img" width='50px'> 
+						</div>
+					</div>
+					<!-- <p><a href="{% url 'DjangoVerse:edit-player' player.id %}" >{{ player.name }}</a> <img src="{% if player.image %}{{ player.image.url }}{% endif %}" width='50px'> </p> -->
 				</li>
 				<hr align='left' class='player_list_hr'>
 			{% endfor %}
