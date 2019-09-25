@@ -8,16 +8,12 @@ class OverwriteStorage(FileSystemStorage):
         """
         From: https://timonweb.com/posts/imagefield-overwrite-file-if-file-with-the-same-name-exists/
         --------------------
-
         Returns a filename that's free on the target storage system, and
         available for new content to be written to.
-
         Found at http://djangosnippets.org/snippets/976/
-
         This file storage solves overwrite on upload problem. Another
         proposed solution was to override the save method on the model
         like so (from https://code.djangoproject.com/ticket/11663):
-
         def save(self, *args, **kwargs):
             try:
                 this = MyModelName.objects.get(id=self.id)

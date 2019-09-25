@@ -5,7 +5,6 @@ from PIL import Image
 from django.core.files import File
 from country_list import countries_for_language
 from music.util import create_youtube_embed
-from .storage import OverwriteStorage
 
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
 
@@ -164,7 +163,8 @@ gigged_with_help_text = """
 """
 
 def player_img_path(instance, filename):
-	return f'DVimages_{instance.name}_{instance.id}_{filename}'
+	"Always give the same name to a player image (based on name and id)"
+	return f'DjangoVerse/player_images/{instance.name}_{instance.id}.jpg'
 
 class Player(BaseInfo):
 	instrument = models.ManyToManyField(Instrument, help_text=instrument_help_text)
