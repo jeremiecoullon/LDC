@@ -9,18 +9,21 @@ from music.util import create_youtube_embed
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
 
 
+def player_img_path(instance, filename):
+	"Always give the same name to a player image (based on name and id)"
+	return f'DjangoVerse/player_images/{instance.name}_{instance.id}.jpg'
 
 def festival_img_path(instance, filename):
-	return f'DjangoVerse/festival_images/{instance.name}/{filename}'
+	return f'DjangoVerse/festival_images/{instance.name}_{instance.id}.jpg'
 
 def venue_img_path(instance, filename):
-	return f'DjangoVerse/venue_images/{instance.name}/{filename}'
+	return f'DjangoVerse/venue_images/{instance.name}_{instance.id}.jpg'
 
 def band_img_path(instance, filename):
-	return f'DjangoVerse/band_images/{instance.name}/{filename}'
+	return f'DjangoVerse/band_images/{instance.name}_{instance.id}.jpg'
 
 def album_img_path(instance, filename): 
-	return f'DjangoVerse/album_images/{instance.name}/{filename}'
+	return f'DjangoVerse/album_images/{instance.name}_{instance.id}.jpg'
 
 
 class BaseInfo(models.Model):
@@ -82,7 +85,6 @@ def compress(image):
 class Festival(BaseInfo):
 	# image = models.ImageField(upload_to=festival_img_path, null=True, blank=True)
 	image = models.ImageField(upload_to=festival_img_path, null=True, blank=True)
-	thumbnail = models.ImageField(upload_to=festival_img_path, null=True, blank=True)
 	isactive = models.BooleanField(default=True)
 
 	def save(self, *args, **kwargs):
@@ -90,13 +92,12 @@ class Festival(BaseInfo):
 			# call the compress function
 			new_image = compress(self.image)
 			# set self.image to new_image
-			self.thumbnail = new_image
+			self.image = new_image
 		# save
 		super(Festival, self).save(*args, **kwargs)
 
 class Venue(BaseInfo):
 	image = models.ImageField(upload_to=venue_img_path, null=True, blank=True)
-	thumbnail = models.ImageField(upload_to=venue_img_path, null=True, blank=True)
 	isactive = models.BooleanField(default=True)
 
 	def save(self, *args, **kwargs):
@@ -104,13 +105,12 @@ class Venue(BaseInfo):
 			# call the compress function
 			new_image = compress(self.image)
 			# set self.image to new_image
-			self.thumbnail = new_image
+			self.image = new_image
 		# save
 		super(Venue, self).save(*args, **kwargs)
 
 class Album(BaseInfo):
 	image = models.ImageField(upload_to=album_img_path, null=True, blank=True)
-	thumbnail = models.ImageField(upload_to=album_img_path, null=True, blank=True)
 	date = models.DateTimeField(null=True, blank=True)
 
 	def save(self, *args, **kwargs):
@@ -118,13 +118,12 @@ class Album(BaseInfo):
 			# call the compress function
 			new_image = compress(self.image)
 			# set self.image to new_image
-			self.thumbnail = new_image
+			self.image = new_image
 		# save
 		super(Album, self).save(*args, **kwargs)
 
 class Band(BaseInfo):
 	image = models.ImageField(upload_to=band_img_path, null=True, blank=True)
-	thumbnail = models.ImageField(upload_to=band_img_path, null=True, blank=True)
 	isactive = models.BooleanField(default=True)
 	festival = models.ManyToManyField(Festival, blank=True, related_name='bandsplayed')
 	venue = models.ManyToManyField(Venue, blank=True, related_name='bandsplayed')
@@ -135,7 +134,7 @@ class Band(BaseInfo):
 			# call the compress function
 			new_image = compress(self.image)
 			# set self.image to new_image
-			self.thumbnail = new_image
+			self.image = new_image
 		# save
 		super(Band, self).save(*args, **kwargs)
 
@@ -162,16 +161,12 @@ gigged_with_help_text = """
 </ol>
 """
 
-def player_img_path(instance, filename):
-	"Always give the same name to a player image (based on name and id)"
-	return f'DjangoVerse/player_images/{instance.name}_{instance.id}.jpg'
 
 class Player(BaseInfo):
 	instrument = models.ManyToManyField(Instrument, help_text=instrument_help_text)
 	isactive = models.BooleanField(default=True, help_text="Whether or not they're active on the Gypsy Jazz scene today")
 	# not required
 	image = models.ImageField(upload_to=player_img_path, null=True, blank=True, help_text="If the width is not 1.5 times the height, then the image will be cropped to make it so.")
-	thumbnail = models.ImageField(upload_to=player_img_path, null=True, blank=True)
 	band = models.ManyToManyField(Band, blank=True, related_name='members')
 	festival = models.ManyToManyField(Festival, blank=True, related_name='playersplayed')
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
