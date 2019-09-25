@@ -90,8 +90,14 @@ a.btn-danger {
 
 
 @media(max-width: 857px){
-	.other_save, .delete_button, .save_button{
+	.other_save, .delete_button, .save_button, .add_player_button, .button_other_model{
 		width: 100%;
 		margin-top: 5px;
+	}
+	.button_other_model{
+		margin-left: 0px;
+	}
+	.add_player_button{
+		margin-bottom: 15px;
 	}
 }

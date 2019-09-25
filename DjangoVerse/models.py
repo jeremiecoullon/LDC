@@ -144,9 +144,30 @@ class Band(BaseInfo):
 		super(Band, self).save(*args, **kwargs)
 
 
+instrument_help_text = """
+<p>This field is required!</p>
+<hr>
+<p><span style='font-weight:bold'>On desktop:</span> double click on an instrument to select it</p>
+<p style='font-weight:bold'>On mobile:</p>
+<ol>
+<li>Click on the gray box in the 'available instrument' group, choose an instrument, and click OK.</li>
+<li>Click on the downward arrow to move the instrument to the 'chosen instrument' group</li>
+</ol>
+"""
+
+gigged_with_help_text = """
+<p>Choose people this player has gigged with (ie: done a concert with). Note that jams don't count!</p>
+<hr>
+<p><span style='font-weight:bold'>On desktop:</span> double click on a player to select them</p>
+<p style='font-weight:bold'>On mobile:</p>
+<ol>
+<li>Click on the gray box in the 'available gigged with' group, choose some players, and click OK.</li>
+<li>Click on the downward arrow to move the players to the 'chosen gigged with' group</li>
+</ol>
+"""
 
 class Player(BaseInfo):
-	instrument = models.ManyToManyField(Instrument, help_text="Select the instruments they play")
+	instrument = models.ManyToManyField(Instrument, help_text=instrument_help_text)
 	isactive = models.BooleanField(default=True, help_text="Whether or not they're active on the Gypsy Jazz scene today")
 	# not required
 	image = models.ImageField(upload_to=player_img_path, storage=OverwriteStorage(), null=True, blank=True, help_text="If the width is not 1.5 times the height, then the image will be cropped to make it so.")
@@ -155,7 +176,7 @@ class Player(BaseInfo):
 	festival = models.ManyToManyField(Festival, blank=True, related_name='playersplayed')
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
 	album = models.ManyToManyField(Album, blank=True, related_name='playersplayed')
-	gigged_with = models.ManyToManyField('self', blank=True, help_text="Choose people this player has gigged with (ie: done a concert with). Note that jams don't count!")
+	gigged_with = models.ManyToManyField('self', blank=True, help_text=gigged_with_help_text)
 	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to a youtube video of this player's music")
 
 	def save(self, *args, **kwargs):
