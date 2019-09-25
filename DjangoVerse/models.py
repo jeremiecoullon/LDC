@@ -20,9 +20,6 @@ def venue_img_path(instance, filename):
 def band_img_path(instance, filename):
 	return f'DjangoVerse/band_images/{instance.name}/{filename}'
 
-def player_img_path(instance, filename):
-	return f'DjangoVerse/player_images/{instance.name}/{filename}'
-
 def album_img_path(instance, filename): 
 	return f'DjangoVerse/album_images/{instance.name}/{filename}'
 
@@ -166,6 +163,9 @@ gigged_with_help_text = """
 </ol>
 """
 
+def player_img_path(instance, filename):
+	return f'DVimages_{instance.name}_{instance.id}_{filename}'
+
 class Player(BaseInfo):
 	instrument = models.ManyToManyField(Instrument, help_text=instrument_help_text)
 	isactive = models.BooleanField(default=True, help_text="Whether or not they're active on the Gypsy Jazz scene today")
@@ -185,7 +185,7 @@ class Player(BaseInfo):
 			# call the compress function
 			new_image = compress(self.image)
 			# set self.image to new_image
-			self.thumbnail = new_image
+			self.image = new_image
 		# save
 		super(Player, self).save(*args, **kwargs)
 	

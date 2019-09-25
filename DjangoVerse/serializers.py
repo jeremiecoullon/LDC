@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from .models import Band, Player, Instrument, Venue, Festival, Album
 
-base_fields = ('name', 'url', 'id', 'description', 'country', 'external_URL', 'thumbnail')
+base_fields = ('name', 'url', 'id', 'description', 'country', 'external_URL', 'image')
 
 
 class BandSerializer(serializers.ModelSerializer):
