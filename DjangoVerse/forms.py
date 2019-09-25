@@ -18,7 +18,7 @@ class PlayerForm(ModelForm):
 		model = Player
 		fields = ('name', 'country', 'description', 'instrument', 'external_URL', 'image', 'isactive', 'band', 'festival', 'gigged_with', 'video_embed')
 		widgets = {'instrument': FilteredSelectMultiple(verbose_name="instrument",
-                                                      is_stacked=False,), 
+                                                      is_stacked=True,), 
 					'gigged_with': FilteredSelectMultiple(verbose_name="gigged with",
-			                                                      is_stacked=False,)
+			                                                      is_stacked=True,)
 		}

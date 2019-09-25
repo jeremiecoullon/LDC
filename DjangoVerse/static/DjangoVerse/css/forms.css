@@ -66,3 +66,24 @@ a.btn-danger {
 .model_list_buttons{
 	margin-top: 40px;
 }
+
+/* M2M forms on mobile */
+#div_id_instrument > div > .stacked > .selector-available {
+	width: 100%;
+}
+#div_id_instrument > div > .stacked > .selector-chosen {
+	width: 100%;
+}
+.stacked, #id_instrument_input, #id_instrument_from, #id_instrument_to {
+	width: 100%;
+}
+
+#div_id_gigged_with > div > .stacked > .selector-available {
+	width: 100%;
+}
+#div_id_gigged_with > div > .stacked > .selector-chosen {
+	width: 100%;
+}
+.stacked, #id_gigged_with_input, #id_gigged_with_from, #id_gigged_with_to {
+	width: 100%;
+}
