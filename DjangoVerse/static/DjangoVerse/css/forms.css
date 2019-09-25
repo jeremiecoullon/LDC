@@ -87,3 +87,11 @@ a.btn-danger {
 .stacked, #id_gigged_with_input, #id_gigged_with_from, #id_gigged_with_to {
 	width: 100%;
 }
+
+
+@media(max-width: 857px){
+	.other_save, .delete_button, .save_button{
+		width: 100%;
+		margin-top: 5px;
+	}
+}
