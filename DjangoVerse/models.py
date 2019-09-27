@@ -132,7 +132,7 @@ gigged_with_help_text = """
 
 
 class Player(BaseInfo):
-	instrument = models.ManyToManyField(Instrument, help_text=instrument_help_text)
+	instrument = models.ManyToManyField(Instrument)#, help_text=instrument_help_text)
 	isactive = models.BooleanField(default=True, help_text="Whether or not they're active on the Gypsy Jazz scene today")
 	# not required
 	image = models.ImageField(upload_to=player_img_path, null=True, blank=True, help_text="If the width is not 1.5 times the height, then the image will be cropped to make it so.")
@@ -140,7 +140,7 @@ class Player(BaseInfo):
 	festival = models.ManyToManyField(Festival, blank=True, related_name='playersplayed')
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
 	album = models.ManyToManyField(Album, blank=True, related_name='playersplayed')
-	gigged_with = models.ManyToManyField('self', blank=True, help_text=gigged_with_help_text)
+	gigged_with = models.ManyToManyField('self', blank=True)#, help_text=gigged_with_help_text)
 	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to a youtube video of this player's music")
 
 	def save(self, *args, **kwargs):

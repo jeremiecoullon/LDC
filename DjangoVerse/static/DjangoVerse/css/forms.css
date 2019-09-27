@@ -69,6 +69,32 @@ a.btn-danger {
 .model_list_buttons{
 	margin-top: 40px;
 }
+input[type=checkbox]
+{
+  /* Double-sized Checkboxes */
+  -ms-transform: scale(1.2); /* IE */
+  -moz-transform: scale(1.2); /* FF */
+  -webkit-transform: scale(1.2); /* Safari and Chrome */
+  -o-transform: scale(1.2); /* Opera */
+  transform: scale(1.2);
+  padding: 10px;
+}
+
+
+.gigged_with_form{
+	height: 220px;
+	overflow: auto;
+	background-color: #F8F8F8;
+	border: 1px solid #D5CECE;
+	border-radius: 4px;
+}
+.instrument_form{
+	border: 1px solid #D5CECE;
+	border-radius: 4px;
+	height: 180px;
+	overflow: auto;
+	background-color: #F8F8F8;
+}
 
 /* M2M forms on mobile */
 #div_id_instrument > div > .stacked > .selector-available {

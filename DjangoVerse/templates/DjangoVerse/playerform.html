@@ -73,12 +73,14 @@
 						</div>
 					</div>
 					<div class='form-row'>
-						<div class='form-group col-md-12'>
+						<p style="width:100%"><b>Required Field</b>. Choose the instruments they play:</p>
+						<div class='form-group col-md-6 instrument_form'>
 							{{ form.instrument|as_crispy_field }}
 						</div>
 					</div>
 					<div class='form-row'>
-						<div class='form-group col-md-12'>
+						<p>Players they have gigged with (ie: done a concert with). Note that jams don't count!</p>
+						<div class='form-group col-md-6 gigged_with_form'>
 							{{ form.gigged_with|as_crispy_field }}
 						</div>
 					</div>
