@@ -80,9 +80,14 @@ input[type=checkbox]
   padding: 10px;
 }
 
+.form-check-label{
+	width: 100%;
+	border-top: 1px solid #d9d5d5;
+	padding: 7px 0px;
+}
 
 .gigged_with_form{
-	height: 220px;
+	height: 240px;
 	overflow: auto;
 	background-color: #F8F8F8;
 	border: 1px solid #D5CECE;
@@ -91,7 +96,7 @@ input[type=checkbox]
 .instrument_form{
 	border: 1px solid #D5CECE;
 	border-radius: 4px;
-	height: 180px;
+	height: 200px;
 	overflow: auto;
 	background-color: #F8F8F8;
 }
@@ -128,5 +133,8 @@ input[type=checkbox]
 	}
 	.add_player_button{
 		margin-bottom: 15px;
+	}
+	.gigged_with_form, .instrument_form{
+		margin-right: 30%;
 	}
 }

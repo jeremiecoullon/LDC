@@ -65,13 +65,18 @@
 				<form method='POST' class='post-form' enctype="multipart/form-data">
 					{% csrf_token %}
 					<div class='form-row'>
+						
 						<div class='form-group col-md-6 mb-0'>
+							<b>Required Field</b>
 							{{ form.name|as_crispy_field }}
 						</div>
+						
 						<div class='form-group col-md-10 mb-0'>
+							<b>Required Field</b>
 							{{ form.country|as_crispy_field }}
 						</div>
 					</div>
+					
 					<div class='form-row'>
 						<p style="width:100%"><b>Required Field</b>. Choose the instruments they play:</p>
 						<div class='form-group col-md-6 instrument_form'>
