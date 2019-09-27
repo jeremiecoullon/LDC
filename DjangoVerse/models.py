@@ -2,7 +2,7 @@ import uuid
 from django.db import models
 from country_list import countries_for_language
 from music.util import create_youtube_embed
-from django.core.cache import cache
+# from django.core.cache import cache
 from .images import compress
 
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
@@ -45,7 +45,7 @@ class Instrument(models.Model):
 	name = models.CharField(max_length=200)
 
 	def save(self, *args, **kwargs):
-		cache.clear()
+		# cache.clear()
 		super(Instrument, self).save(*args, **kwargs)
 
 	def __str__(self):
@@ -144,7 +144,7 @@ class Player(BaseInfo):
 	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to a youtube video of this player's music")
 
 	def save(self, *args, **kwargs):
-		cache.clear()
+		# cache.clear()
 		self.video_embed = create_youtube_embed(url=self.video_embed)
 		if self.image:
 			# call the compress function
