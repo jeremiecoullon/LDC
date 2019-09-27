@@ -4,13 +4,9 @@ from DjangoVerse import views
 
 list_dict = {
 	'get': 'list',
-    'post': 'create'
 	}
 detail_dict = {
 	'get': 'retrieve',
-    'put': 'update',
-    'patch': 'partial_update',
-    'delete': 'destroy'
 	}
 
 player_list = views.PlayerViewSet.as_view(list_dict)

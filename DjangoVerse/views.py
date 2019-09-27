@@ -122,20 +122,6 @@ class InstrumentViewSet(viewsets.ModelViewSet):
 	queryset = Instrument.objects.all()
 	serializer_class = InstrumentSerializer
 
-class FestivalViewSet(viewsets.ModelViewSet):
-	queryset = Festival.objects.all()
-	serializer_class = FestivalSerializer
-
-# class VenueViewSet(viewsets.ModelViewSet):
-# 	queryset = Venue.objects.all()
-# 	serializer_class = VenueSerializer
-
-# class AlbumViewSet(viewsets.ModelViewSet):
-# 	queryset = Album.objects.all()
-# 	serializer_class = AlbumSerializer
-
-
-
 	
 class GetCountriesView(APIView):
 	"""
