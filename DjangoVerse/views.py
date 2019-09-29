@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
-# from django.utils.decorators import method_decorator
-# from django.views.decorators.cache import cache_page
-# from django.core.cache import cache
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
 
 from rest_framework import generics
 from rest_framework.decorators import api_view
@@ -72,7 +72,7 @@ def form_list_player(request):
 
 
 def delete_player(request, pk):
-	# cache.clear()
+	cache.clear()
 	player = get_object_or_404(Player, pk=pk)
 	if request.method == 'POST':
 		player.delete()
@@ -242,7 +242,7 @@ class D3View(APIView):
 	Note: the first few lines create the list of nodes, and the bit between 'Start' and 'End' creates links between players.
 	The rest of it deals with the other models (so doesn't get called if you don't inlude 'band', 'venue', or 'festival' in the query)
 	"""
-	# @method_decorator(cache_page(60*60*2))
+	@method_decorator(cache_page(60*60*2))
 	def get(self, request, format=None):
 		# filter based on the request
 		model_dict = filter_nodes(request)
