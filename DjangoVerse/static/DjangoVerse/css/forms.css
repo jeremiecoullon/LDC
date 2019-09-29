@@ -87,7 +87,7 @@ input[type=checkbox]
 }
 
 .gigged_with_form{
-	height: 240px;
+	height: 370px;
 	overflow: auto;
 	background-color: #F8F8F8;
 	border: 1px solid #D5CECE;
@@ -96,7 +96,7 @@ input[type=checkbox]
 .instrument_form{
 	border: 1px solid #D5CECE;
 	border-radius: 4px;
-	height: 200px;
+	height: 260px;
 	overflow: auto;
 	background-color: #F8F8F8;
 }
