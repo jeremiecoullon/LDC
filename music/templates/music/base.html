@@ -4,14 +4,6 @@
 
 {% block header %}{% endblock %}
 
-<!-- <nav class="navbar sticky-top navbar-light bg-light">
-  <a class="navbar-brand" href="{% url 'music:index' %}">London Django Collective</a>
-  <a class="navbar-brand" href="{% url 'music:djangoverse-page' %}">DjangoVerse</a>
-  <a class="navbar-brand" href="#">Social Media</a>
-</nav> -->
-
-
-
 <nav class="navbar navbar-expand-md navbar-light bg-LDC">
     <!-- <a href="{% url 'music:index' %}" class="navbar-brand navbar-LDC">London Django Collective</a> -->
     <a href="{% url 'music:index' %}" class="navbar-brand navbar-LDC"><img src="{% static 'music/images/logo_small.png' %}" class="navbar-logo"></a>
@@ -47,7 +39,7 @@
             </a>
             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{% url 'music:memes-page' %}">GypsyJazzMemes</a>
-                <!-- <a class="dropdown-item" href="{% url 'music:djangoverse-page' %}">DjangoVerse</a> -->
+                <!-- <a class="dropdown-item" href="{% url 'DjangoVerse:djangoverse-page' %}">DjangoVerse</a> -->
             </div>
         </li>
         </div>

@@ -19,15 +19,17 @@ app_name = 'DjangoVerse'
 
 # commented out 'albums' and 'venue' URLS for now. Can add them later if needed
 urlpatterns = [
-	path('players/', player_list, name='player-list'),
-	path('players/<str:pk>', player_detail, name='player-detail'),
-	path('instruments/', instrument_list, name='instrument-list'),
-	path('instruments/<str:pk>', instrument_detail, name='instrument-detail'),
-	path('countries/', views.GetCountriesView.as_view(), name='country-list'),
-	path('all_instruments/', views.GetInstrumentsView.as_view(), name='instrument-list'),
+	path('', views.DV_fullscreen, name='djangoverse-page'),
 
-	path('D3endpoint/', views.D3View.as_view(), name='D3-endpoint'),
-	path('', views.api_root),
+	# API
+	path('api/', views.api_root),
+	path('api/D3endpoint/', views.D3View.as_view(), name='D3-endpoint'),
+	path('api/players/', player_list, name='player-list'),
+	path('api/players/<str:pk>', player_detail, name='player-detail'),
+	path('api/instruments/', instrument_list, name='instrument-list'),
+	path('api/instruments/<str:pk>', instrument_detail, name='instrument-detail'),
+	path('api/countries/', views.GetCountriesView.as_view(), name='country-list'),
+	path('api/all_instruments/', views.GetInstrumentsView.as_view(), name='instrument-list'),
 
 	# forms
 	path("forms/player/add", views.post_player, name='add-player'),

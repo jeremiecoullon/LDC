@@ -26,5 +26,5 @@ urlpatterns = [
     path('leadmin/', admin.site.urls),
     path('admin/', RedirectView.as_view(url=ADMIN_URL)), # See http://www.holovaty.com/writing/admin-easter-egg/
     path('', include('music.urls')),
-    path('api/', include('DjangoVerse.urls', namespace='DjangoVerse')),
+    path('djangoverse/', include('DjangoVerse.urls', namespace='DjangoVerse')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

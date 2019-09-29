@@ -24,14 +24,6 @@ def contact_gigs(request):
 	volumes = Volume.objects.order_by('name')
 	return render(request, 'music/contact_gigs.html', {'gigs': gigs, 'volumes': volumes})
 
-def DV(request):
-	volumes = Volume.objects.order_by('name')
-	return render(request, 'DV/djangoverse_page.html', {'volumes': volumes})
-
-
-def DV_fullscreen(request):
-	return render(request, 'DV/DV_fullscreen.html')
-
 def memes(request):
 	volumes = Volume.objects.order_by('name')
 	return render(request, 'music/memes.html', {'volumes': volumes})
