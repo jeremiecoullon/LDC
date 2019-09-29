@@ -13,8 +13,14 @@ def create_youtube_embed(url):
     """
     Parses URL to youtube video and returns the embeded link.
     """
-    if 'www.youtube.com' not in url:
+    if ('youtube.com' not in url) and ('youtu.be' not in url):
         return ""
+    if 'https://youtu.be' in url:
+        # format for 'copy link' on youtube: 'https://youtu.be/<ID>'
+        url = url.split('https://youtu.be/')[1]
+    if 'm.youtube.com' in url:
+        # format for URL in mobile browser:
+        url = url.split("watch?v=")[1]
     if 'youtube.com/embed' in url:
         if "?" in url:
             url = url.split("?")[0]
