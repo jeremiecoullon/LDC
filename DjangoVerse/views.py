@@ -17,7 +17,7 @@ from DjangoVerse.serializers import BandCountrySerializer, PlayerCountrySerializ
 from DjangoVerse.models import Band, Player, Instrument, Venue, Festival, Album
 from music.models import Volume
 from .forms import PlayerForm, InstrumentForm
-from .slack import send_slack_message
+# from .slack import send_slack_message
 from country_list import countries_for_language
 import itertools
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
@@ -34,8 +34,8 @@ def post_player(request):
 		form = PlayerForm(request.POST, request.FILES)
 		if form.is_valid():
 			post = form.save(commit=True)
-			slack_message = "New DjangoVerse player: {}".format(post.name)
-			send_slack_message(message=slack_message)
+			# slack_message = "New DjangoVerse player: {}".format(post.name)
+			# send_slack_message(message=slack_message)
 			# 3 'save' buttons in the form:
 			if 'btn-save' in request.POST:
 				return redirect("DjangoVerse:list-player")
