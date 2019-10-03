@@ -135,7 +135,7 @@ class Player(BaseInfo):
 	instrument = models.ManyToManyField(Instrument)#, help_text=instrument_help_text)
 	isactive = models.BooleanField(default=True, help_text="Whether or not they're active on the Gypsy Jazz scene today")
 	# not required
-	image = models.ImageField(upload_to=player_img_path, null=True, blank=True, help_text="If the width is not 1.5 times the height, then the image will be cropped to make it so.")
+	image = models.ImageField(upload_to=player_img_path, null=True, blank=True, help_text="<p>The image should be <b>landscape</b> rather than portrait. (ie: horizontal rather than vertical).</p><p>If the width is not 1.5 times the height, then the image will be cropped to make it so.</p>")
 	band = models.ManyToManyField(Band, blank=True, related_name='members')
 	festival = models.ManyToManyField(Festival, blank=True, related_name='playersplayed')
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
