@@ -31,7 +31,7 @@ else:
     DEBUG = False
 
 
-
+DEBUG = True
 # import logging
 # logging.config.dictConfig({
 #     'version': 1,
