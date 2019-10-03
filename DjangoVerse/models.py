@@ -141,7 +141,7 @@ class Player(BaseInfo):
 	venue = models.ManyToManyField(Venue, blank=True, related_name='playersplayed')
 	album = models.ManyToManyField(Album, blank=True, related_name='playersplayed')
 	gigged_with = models.ManyToManyField('self', blank=True)#, help_text=gigged_with_help_text)
-	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="Paste the URL to a youtube video of this player's music")
+	video_embed = models.CharField(default='', max_length=300, blank=True, verbose_name="Youtube URL", help_text="<p>Paste the URL of a <b>youtube video</b> of this player's music.</p> <p><b>Note: don't paste the link to a youtube account :)</b></p>")
 
 	def save(self, *args, **kwargs):
 		cache.clear()
