@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils import timezone
 from django.utils.text import slugify
+from django.urls import reverse
 from ckeditor.fields import RichTextField
 from .util import create_youtube_embed, player_image_directory_path, tune_image_directory_path, format_date
 
@@ -63,6 +64,9 @@ class Volume(models.Model):
 	def save(self, *args, **kwargs):
 		self.slug = slugify(self.name)
 		super(Volume, self).save(*args, **kwargs)
+
+	def get_absolute_url(self):
+		return reverse('music:volume', args=[str(self.slug)])
 
 	def __str__(self):
 		return self.name

@@ -19,6 +19,14 @@ from django.urls import path, include
 from django.conf.urls.static import static
 from django.conf import settings
 from django.views.generic import RedirectView
+from django.contrib.sitemaps.views import sitemap
+from .sitemaps import VolumeSitemap, OtherStaticViewSitemap, IndexViewSitemap
+
+sitemaps = {
+    'index': IndexViewSitemap,
+    'volumes': VolumeSitemap,
+    'static': OtherStaticViewSitemap,
+}
 
 ADMIN_URL = 'https://docs.djangoproject.com/en/dev/ref/contrib/admin/'
 
@@ -27,4 +35,6 @@ urlpatterns = [
     path('admin/', RedirectView.as_view(url=ADMIN_URL)), # See http://www.holovaty.com/writing/admin-easter-egg/
     path('', include('music.urls')),
     path('djangoverse/', include('DjangoVerse.urls', namespace='DjangoVerse')),
+    path('sitemap.xml', sitemap, {'sitemaps': sitemaps},
+         name='django.contrib.sitemaps.views.sitemap')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
