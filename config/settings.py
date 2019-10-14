@@ -29,6 +29,8 @@ if os.path.isfile("../local.txt"):
     DEBUG = True
 else:
     DEBUG = False
+    # Force all traffic to use https
+    SECURE_SSL_REDIRECT = True
 
 
 # import logging
