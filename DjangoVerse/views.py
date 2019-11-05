@@ -20,6 +20,9 @@ from .forms import PlayerForm, InstrumentForm
 from .slack import send_slack_message
 from country_list import countries_for_language
 import itertools
+
+from config.settings import DEBUG
+
 COUNTRY_LIST = [(k, v) for k, v in dict(countries_for_language('en')).items()]
 
 
@@ -34,8 +37,10 @@ def post_player(request):
 		form = PlayerForm(request.POST, request.FILES)
 		if form.is_valid():
 			post = form.save(commit=True)
-			slack_message = "New DjangoVerse player: {}".format(post.name)
-			send_slack_message(message=slack_message)
+			if DEBUG == False:
+				# only send message to slack if in production
+				slack_message = "New DjangoVerse player: {}".format(post.name)
+				send_slack_message(message=slack_message)
 			# 3 'save' buttons in the form:
 			if 'btn-save' in request.POST:
 				return redirect("DjangoVerse:list-player")
@@ -227,7 +232,6 @@ def filter_nodes(request):
 
 
 
-
 class D3View(APIView):
 	"""
 	API endpoint for D3. 
@@ -245,12 +249,16 @@ class D3View(APIView):
 	Note: the first few lines create the list of nodes, and the bit between 'Start' and 'End' creates links between players.
 	The rest of it deals with the other models (so doesn't get called if you don't inlude 'band', 'venue', or 'festival' in the query)
 	"""
-	# @method_decorator(cache_page(60*60*2))
+	@method_decorator(cache_page(60*60*2))
 	def get(self, request, format=None):
 		# filter based on the request
+		
+		# profiling: filter_nodes is very fast (it just builds a QuerySet)
 		model_dict = filter_nodes(request)
-		# put together node data
+		# put together node data	
+		
 		node_list = []
+		# vaste majority of time spent here
 		for k,v in model_dict.items():
 			# create serializer
 			v['ser'] = v['SerClass'](v['qs'], many=True, context={'request': request})
@@ -266,7 +274,7 @@ class D3View(APIView):
 		# list_player_id = [e[0] for e in model_dict['player']['qs'].values_list('id')]
 		# print(list_player_id)
 
-
+		
 		if 'player' in request.query_params.keys():
 			linkplayerserializer = LinkPlayerSerializer(model_dict['player']['qs'], many=True, context={'request': request})
 
@@ -298,6 +306,7 @@ class D3View(APIView):
 			# End of creating links between players
 			# ================================================
 		else: pass
+
 
 		data_dict = {'nodes': node_list, 'links': link_list}
 		# leResponse = Response(data_dict)
