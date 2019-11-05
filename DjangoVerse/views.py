@@ -249,7 +249,7 @@ class D3View(APIView):
 	Note: the first few lines create the list of nodes, and the bit between 'Start' and 'End' creates links between players.
 	The rest of it deals with the other models (so doesn't get called if you don't inlude 'band', 'venue', or 'festival' in the query)
 	"""
-	@method_decorator(cache_page(60*60*2))
+	# @method_decorator(cache_page(60*60*2))
 	def get(self, request, format=None):
 		# filter based on the request
 		
