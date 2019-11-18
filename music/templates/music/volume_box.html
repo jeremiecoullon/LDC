@@ -1,13 +1,13 @@
 {% if vol.status == "d" %}
 <a {% if vol.status == "d" and vol.pre_order %}href="{{vol.pre_order}}" target="_blank"{%endif%} class='addgradientdraft'>
 {% else %}
-<a href="{% url 'music:volume' vol.slug %}" class='addgradientpublished'>
+<a href="{% url 'music:volume' vol.slug %}" class='image_box_wrapper'>
 {% endif %}
 
-	<img 
-	src="{% if vol.image %}{{vol.image.url}}{% endif %}" 
-	alt-src="{% if vol.composer.image %}{{vol.composer.image.url}}{% endif %}" 
-	status='{{ vol.status }}' 
+	<img
+	src="{% if vol.image %}{{vol.image.url}}{% endif %}"
+	alt-src="{% if vol.composer.image %}{{vol.composer.image.url}}{% endif %}"
+	status='{{ vol.status }}'
 	le_vol_composer='{{ vol.composer.image }}'
 	class="image_box"
 	>
@@ -26,7 +26,7 @@
 
 
 	</div>
-	
+
 {% if vol.status == "d" %}
 </a>
 {% else %}
